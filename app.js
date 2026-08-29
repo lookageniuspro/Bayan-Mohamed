@@ -7,6 +7,118 @@
 // --- GLOBAL STATE ---
 let currentView = 'student-store';
 let isLogged = false;
+
+/* ==========================================================================
+   MULTILINGUAL SYSTEM (ARABIC / ENGLISH)
+   ========================================================================== */
+let currentLang = 'ar';
+
+const i18n = {
+    ar: {
+        dir: 'rtl',
+        brandSubtitle: 'ACADEMY • التخصصات الإدارية',
+        navStudent: 'بوابة الطلاب',
+        navPlayer: 'مشغل الفيديو (DRM)',
+        navAdmin: 'لوحة المشرف (iPad/الجوال)',
+        loginBtn: 'تسجيل الدخول / OTP',
+        loggedIn: 'مسجّل الدخول',
+        deviceBadge: 'iPhone 15 Pro (نشط)',
+        heroPill: 'منصة تعليمية فاخرة لطلاب تخصصات الأعمال',
+        heroTitle1: 'Master Business with',
+        heroTitle2: 'Bayan Mohamed',
+        heroSubtitle: 'تفوق في المواد الإدارية، التحليل المالي، التسويق، والتخطيط الاستراتيجي مع شروحات مبسطة ومحمية بأحدث تقنيات المشاهدة الذكية والتشفير الآمن.',
+        heroCta1: 'ابدأ مشاهدة الكورسات',
+        heroCta2: 'تصفح المقررات الدراسية',
+        chatGreeting: 'مرحباً بك 👋 أنا مساعد بيان محمد الافتراضي. كيف يمكنني مساعدتك اليوم؟\n\nيمكنك طرح أي سؤال حول المقررات، الاشتراك، طريقة الدفع، أو الحماية.',
+        chatPlaceholder: 'اكتب رسالتك هنا...',
+        chatTitle: 'مساعد أكاديمية بيان محمد',
+        chatStatus: 'متصل الآن',
+        footerYearSuffix: 'جميع الحقوق محفوظة.',
+        footerTech: 'مشاهدة آمنة بتقنية DRM • تشفير HLS',
+        whatsappTooltip: 'تواصل معنا',
+        qrCourses: 'المقررات المتاحة',
+        qrPayment: 'طريقة الدفع',
+        qrSecurity: 'حماية المحتوى',
+        qrContact: 'التواصل معنا',
+        navLabel: 'التنقل',
+        langLabel: 'اللغة',
+    },
+    en: {
+        dir: 'ltr',
+        brandSubtitle: 'ACADEMY • Business Specialties',
+        navStudent: 'Student Portal',
+        navPlayer: 'Video Player (DRM)',
+        navAdmin: 'Admin Panel (iPad/Mobile)',
+        loginBtn: 'Sign in / OTP',
+        loggedIn: 'Signed in',
+        deviceBadge: 'iPhone 15 Pro (Active)',
+        heroPill: 'A premium education platform for business students',
+        heroTitle1: 'Master Business with',
+        heroTitle2: 'Bayan Mohamed',
+        heroSubtitle: 'Excel in business courses, financial analysis, marketing, and strategic planning with simplified, DRM-protected video explanations.',
+        heroCta1: 'Start Watching Courses',
+        heroCta2: 'Browse Courses',
+        chatGreeting: 'Welcome 👋 I am Bayan Mohamed\'s virtual assistant. How can I help you today?\n\nFeel free to ask about courses, subscriptions, payment methods, or content protection.',
+        chatPlaceholder: 'Type your message here...',
+        chatTitle: 'Bayan Mohamed Academy Assistant',
+        chatStatus: 'Online now',
+        footerYearSuffix: 'All rights reserved.',
+        footerTech: 'Secure DRM viewing • HLS encryption',
+        whatsappTooltip: 'Contact us',
+        qrCourses: 'Available Courses',
+        qrPayment: 'Payment Method',
+        qrSecurity: 'Content Protection',
+        qrContact: 'Contact Us',
+        navLabel: 'Navigation',
+        langLabel: 'Language',
+    }
+};
+
+function applyLanguage(lang) {
+    currentLang = lang;
+
+    const t = i18n[lang];
+
+    // Direction
+    document.documentElement.lang = lang;
+    document.documentElement.dir = t.dir;
+
+    // Update all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.textContent = t[key];
+    });
+
+    // Update all data-i18n-placeholder elements
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key]) el.placeholder = t[key];
+    });
+
+    // Toggle active lang button (desktop + mobile)
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `lang-${lang}` || btn.id === `m-lang-${lang}`);
+    });
+
+    // Update the compact language toggle label + icon
+    const toggleLabel = document.getElementById('lang-toggle-label');
+    if (toggleLabel) toggleLabel.textContent = lang === 'ar' ? 'ع' : 'EN';
+    setTimeout(() => { if (window.lucide) lucide.createIcons(); }, 30);
+
+    // Persist
+    try { localStorage.setItem('bma_lang', lang); } catch(e) {}
+
+    // Re-render if chat open
+    const panel = document.getElementById('chat-panel');
+    if (panel && panel.classList.contains('open')) {
+        initChat();
+    }
+}
+
+function toggleLang() {
+    applyLanguage(currentLang === 'ar' ? 'en' : 'ar');
+}
+
 let studentUser = {
     name: 'أحمد محمد علي',
     phone: '+966 50 987 6543',
@@ -141,6 +253,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Footer Dynamic Year
     const yearEl = document.getElementById('footer-year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // Load saved language preference (default: ar)
+    let savedLang = null;
+    try { savedLang = localStorage.getItem('bma_lang'); } catch(e) {}
+    applyLanguage(savedLang === 'en' ? 'en' : 'ar');
+
+    // Initialize Chat Translator
+    initChatTranslator();
 });
 
 /* ==========================================================================
@@ -244,6 +364,11 @@ function switchView(viewId) {
     if (viewId === 'video-player') document.getElementById('nav-player')?.classList.add('active');
     if (viewId === 'admin-dashboard') document.getElementById('nav-admin')?.classList.add('active');
 
+    // Sync mobile drawer nav active states
+    document.querySelectorAll('.mobile-nav-item').forEach(item => {
+        item.classList.toggle('active', item.getAttribute('data-mnav') === viewId);
+    });
+
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -256,10 +381,63 @@ function switchView(viewId) {
     }
 }
 
+/* ==========================================================================
+   MOBILE NAVIGATION DRAWER
+   ========================================================================== */
+function toggleMobileMenu(force) {
+    const menu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const btn = document.getElementById('hamburger-btn');
+    if (!menu) return;
+
+    const willOpen = (typeof force === 'boolean') ? force : !menu.classList.contains('open');
+
+    menu.classList.toggle('open', willOpen);
+    overlay?.classList.toggle('open', willOpen);
+    document.body.classList.toggle('menu-open', willOpen);
+    if (btn) btn.classList.toggle('active', willOpen);
+
+    setTimeout(() => { if (window.lucide) lucide.createIcons(); }, 60);
+}
+
+function closeMobileMenu() {
+    toggleMobileMenu(false);
+}
+
+function mobileGoTo(viewId) {
+    closeMobileMenu();
+    setTimeout(() => switchView(viewId), 120);
+}
+
 // SCROLL TO CATALOG HELPER
 function scrollToCatalog() {
-    const el = document.getElementById('course-catalog-section');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    // Ensure we are on the student store view so the catalog is visible
+    switchView('student-store');
+    setTimeout(() => {
+        const el = document.getElementById('course-catalog-section');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 350);
+}
+
+// GO TO CATEGORY (from footer / nav) - switches to store, filters, and scrolls
+function goToCategory(category) {
+    switchView('student-store');
+    if (!document.getElementById('course-catalog-section')) return;
+    // Activate matching tab
+    const tabs = document.querySelectorAll('.category-tabs .tab-btn');
+    tabs.forEach(btn => {
+        btn.classList.toggle('active', (btn.getAttribute('data-cat') || 'all') === category);
+    });
+    // Render filtered / all courses
+    if (category === 'all') {
+        renderCourseCatalog(coursesData);
+    } else {
+        renderCourseCatalog(coursesData.filter(c => c.category === category));
+    }
+    setTimeout(() => {
+        const el = document.getElementById('course-catalog-section');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 350);
 }
 
 // RENDER COURSE CATALOG
@@ -493,8 +671,8 @@ function refreshStudentActivity() {
         <tr>
             <td>
                 <div class="user-cell">
-                    <div class="avatar">AS</div>
-                    <span>Admin Sarah</span>
+                    <div class="avatar">BM</div>
+                    <span>Prof. Bayan Mohamed</span>
                 </div>
             </td>
             <td>Beginner of Student</td>
@@ -502,7 +680,7 @@ function refreshStudentActivity() {
             <td>الان (مباشر)</td>
             <td>iPad Pro (185.220.101.42)</td>
             <td><span class="badge-active">Active</span></td>
-            <td><button class="kick-btn" onclick="revokeStudentSession('Admin Sarah')">طرد الجهاز</button></td>
+            <td><button class="kick-btn" onclick="revokeStudentSession('Prof. Bayan Mohamed')">طرد الجهاز</button></td>
         </tr>
         <tr>
             <td>
@@ -712,6 +890,32 @@ function openMoyasarModal(courseTitle, price) {
 function closeMoyasarModal() {
     document.getElementById('moyasar-modal')?.classList.remove('active');
 }
+// Close any open modal when clicking on the dimmed backdrop (outside the card)
+document.addEventListener('click', (e) => {
+    if (e.target.classList && e.target.classList.contains('modal-backdrop')) {
+        const backdrop = e.target;
+        const isPayment = backdrop.id === 'moyasar-modal';
+        const isOtp = backdrop.id === 'otp-modal';
+        const isDevice = backdrop.id === 'device-modal';
+        if (isPayment) closeMoyasarModal();
+        if (isOtp) closeOTPModal();
+        if (isDevice) closeDeviceModal();
+    }
+});
+// Close open modal with ESC key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (document.getElementById('moyasar-modal')?.classList.contains('active')) {
+            closeMoyasarModal();
+        }
+        if (document.getElementById('otp-modal')?.classList.contains('active')) {
+            closeOTPModal();
+        }
+        if (document.getElementById('device-modal')?.classList.contains('active')) {
+            closeDeviceModal();
+        }
+    }
+});
 
 function switchPayTab(method) {
     document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
@@ -741,4 +945,236 @@ function showDeviceGuardModal() {
 }
 function closeDeviceModal() {
     document.getElementById('device-modal')?.classList.remove('active');
+}
+
+/* ==========================================================================
+   PROFESSIONAL AI ASSISTANT CHATBOT (Bilingual AR / EN)
+   Virtual assistant for Prof. Bayan Mohamed Academy.
+   ========================================================================== */
+
+// Quick reply chips (bilingual)
+const chatQuickReplies = {
+    ar: ['المقررات المتاحة', 'طريقة الدفع', 'حماية المحتوى', 'كيف أشترك؟'],
+    en: ['Available courses', 'Payment method', 'Content protection', 'How to subscribe?']
+};
+
+function initChatTranslator() {
+    // Re-translate dynamically created chat elements on language change
+    if (typeof window !== 'undefined') {
+        window.addEventListener('storage', () => {});
+    }
+}
+
+function toggleChat(force) {
+    const panel = document.getElementById('chat-panel');
+    const launcher = document.querySelector('.chat-launcher');
+    if (!panel) return;
+
+    const willOpen = (typeof force === 'boolean') ? force : !panel.classList.contains('open');
+
+    if (willOpen) {
+        panel.classList.add('open');
+        launcher?.classList.add('open-mode');
+        const badge = launcher?.querySelector('.launcher-badge');
+        if (badge) badge.style.display = 'none';
+
+        // First open: initialize conversation
+        if (!panel.dataset.init) {
+            panel.dataset.init = '1';
+            initChat();
+        }
+        setTimeout(() => {
+            const input = document.getElementById('chat-input');
+            if (input) input.focus();
+        }, 350);
+    } else {
+        panel.classList.remove('open');
+        launcher?.classList.remove('open-mode');
+    }
+    if (window.lucide) lucide.createIcons();
+}
+
+function initChat() {
+    const body = document.getElementById('chat-body');
+    if (!body) return;
+    body.innerHTML = '';
+    showBotTyping(() => {
+        addBotMessage(i18n[currentLang].chatGreeting);
+    });
+    renderQuickReplies();
+}
+
+function renderQuickReplies() {
+    const container = document.getElementById('chat-quick-replies');
+    if (!container) return;
+    const chips = chatQuickReplies[currentLang] || [];
+    container.innerHTML = chips.map(c => `<button class="qr-chip" onclick="handleQuickReply('${c}')">${c}</button>`).join('');
+}
+
+function handleQuickReply(text) {
+    addUserMessage(text);
+    processChat(text);
+}
+
+function addUserMessage(text) {
+    const body = document.getElementById('chat-body');
+    if (!body) return;
+    const msg = document.createElement('div');
+    msg.className = 'chat-msg user';
+    msg.textContent = text;
+    body.appendChild(msg);
+    scrollChatBottom();
+}
+
+function addBotMessage(html) {
+    const body = document.getElementById('chat-body');
+    if (!body) return;
+    const msg = document.createElement('div');
+    msg.className = 'chat-msg bot';
+    msg.innerHTML = html;
+    body.appendChild(msg);
+    scrollChatBottom();
+}
+
+function showBotTyping(callback) {
+    const body = document.getElementById('chat-body');
+    if (!body) return;
+    const typing = document.createElement('div');
+    typing.className = 'chat-msg bot';
+    typing.innerHTML = '<span class="typing-indicator"><span></span><span></span><span></span></span>';
+    body.appendChild(typing);
+    scrollChatBottom();
+    setTimeout(() => {
+        typing.remove();
+        if (callback) callback();
+    }, 900);
+}
+
+function scrollChatBottom() {
+    const body = document.getElementById('chat-body');
+    if (body) body.scrollTop = body.scrollHeight;
+}
+
+function handleChatKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendChatMessage();
+    }
+    const input = document.getElementById('chat-input');
+    if (input) {
+        input.style.height = 'auto';
+        input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+    }
+}
+
+function sendChatMessage() {
+    const input = document.getElementById('chat-input');
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    input.style.height = 'auto';
+    addUserMessage(text);
+    processChat(text);
+}
+
+/* ===== BILINGUAL CHATBOT KNOWLEDGE / ENGINE ===== */
+const chatKB = {
+    ar: {
+        courses: {
+            keywords: ['مقرر', 'كورس', 'كورسات', 'مواد', 'مقررات', 'دورات', 'مادة', 'المواد', 'تعليم', 'دروس', 'classes', 'courses'],
+            reply: '📚 <strong>المقررات المتاحة في الأكاديمية:</strong>\n\n• التحليل المالي والمحاسبة الاستراتيجية (350 ر.س)\n• إدارة الأعمال الدولية والتخطيط الاستراتيجي (420 ر.س)\n• التسويق الرقمي وبناء العلامة التجارية (290 ر.س)\n• إدارة الموارد البشرية والقيادة التنفيذية (380 ر.س)\n• سلاسل الإمداد واللوجستيات (310 ر.س)\n• مبادئ الاقتصاد للمدراء (340 ر.س)\n\nيمكنك تصفحها من قسم <strong>المقررات الدراسية</strong> مباشرة.'
+        },
+        payment: {
+            keywords: ['دفع', 'الدفع', 'سعر', 'الاسعار', 'أسعار', 'تكلفة', 'اشتراك', 'مدى', 'فيزا', 'apple', 'تحويل', 'باي', 'دفع', 'payment', 'price', 'cost', 'moyasar'],
+            reply: '💳 <strong>طريقة الدفع:</strong>\n\nنوفر دفعاً فورياً وآمناً عبر بوابة <strong>Moyasar</strong> وندعم:\n\n• مدى (Mada)\n• Apple Pay\n• التحويل البنكي (الراجحي)\n\nبمجرد إتمام الدفع يتم <strong>تفعيل الكورس تلقائياً وفوراً</strong> على حسابك. هل تريد التفاصيل؟'
+        },
+        subscribe: {
+            keywords: ['اشترك', 'اشتراك', 'كيف اشترك', 'سجل', 'تسجيل', 'انضم', 'عضوية', 'تحتاج حساب', 'subscribe', 'signup', 'join'],
+            reply: '✅ <strong>للتسجيل والاشتراك:</strong>\n\n1. اضغط على زر <strong>"تسجيل الدخول / OTP"</strong> أعلى الصفحة\n2. أدخل رقم جوالك لاستلام رمز التحقق (SMS)\n3. بعد تفعيل الحساب، انتقل إلى المقرر الذي تريده واضغط <strong>اشتراك / مشاهدة</strong>\n4. أكمل الدفع عبر Moyasar وسيُفعّل الكورس فوراً 🚀'
+        },
+        security: {
+            keywords: ['حما', 'تشفير', 'حماية', 'drm', 'تسجيل', 'تصوير', 'علامة مائية', 'سرقة', 'حد جهاز', 'جهاز واحد', 'اشتراك مزدوج', 'security', 'protection', 'drm', 'watermark', 'record'],
+            reply: '🛡️ <strong>حماية المحتوى:</strong>\n\n• تشفير <strong>HLS + DRM</strong> عبر VdoCipher لمنع التحميل (IDM)\n• <strong>علامة مائية ديناميكية</strong> متحركة تعرض اسمك وجوالك و IP أثناء المشاهدة\n• <strong>شاشة سوداء</strong> تلقائية عند كشف محاولة تسجيل الشاشة (OBS)\n• تسجيل الدخول <strong>بجهاز واحد</strong> فقط لمنع مشاركة الحساب\n\nجميع الأجهزة المتزامنة تُراقب بشكل لحظي.'
+        },
+        contact: {
+            keywords: ['تواصل', 'اتصال', 'اتصل', 'رقم', 'جوال', 'هاتف', 'واتساب', 'ايميل', 'بريد', 'دعم', 'فريق', 'contact', 'phone', 'email', 'whatsapp', 'support', 'reach'],
+            reply: '📞 <strong>طرق التواصل مع الأكاديمية:</strong>\n\n• واتساب: <strong dir="ltr">+966 56 005 6445</strong>\n• البريد: <strong>support@bayan-mohamed.edu.sa</strong>\n• الموقع: الرياض، السعودية\n• الدعم الفني متاح 24/7\n\nيمكنك الضغط على زر الواتساب الأخضر أسفل يسار الشاشة للتواصل المباشر.'
+        },
+        about: {
+            keywords: ['بيان', 'من هي', 'عني', 'عن الأكاديمية', 'الأكاديمية', 'منصة', 'الاستاذة', 'محمد', 'مين', 'about', 'who is', 'academy', 'platform'],
+            reply: '🎓 <strong>عن أكاديمية بيان محمد:</strong>\n\nمنصة تعليمية فاخرة تقدم شروحات مبسطة ومحمية للتخصصات الإدارية وإدارة الأعمال لطلاب الجامعات. الأستاذة بيان محمد تقدم محتوى غني في التحليل المالي، التسويق، التخطيط الاستراتيجي، والموارد البشرية بأسلوب عملي يربط النظرية بتطبيقات السوق.'
+        },
+        greeting: {
+            keywords: ['مرحبا', 'اهلا', 'السلام', 'هاي', 'هلا', 'صباح', 'مساء', 'hello', 'hi', 'hey', 'مرحباً', 'أهلاً'],
+            reply: 'أهلاً بك 🌟 يسعدني مساعدتك! يمكنك سؤالي عن المقررات، الأسعار، طريقة الاشتراك، الدفع، أو حماية المحتوى. ماذا تريد أن تعرف؟'
+        },
+        thanks: {
+            keywords: ['شكرا', 'ممتاز', 'يعطيك', 'تسلم', 'thank', 'thanks', 'great', 'ابشر'],
+            reply: 'العفو! 😊 سعيد بمساعدتك. إن كان لديك أي استفسار آخر فأنا هنا لخدمتك. بالتوفيق في مسيرتك التعليمية!'
+        },
+        default: '🤔 لم أفهم طلبك تماماً. يمكنني مساعدتك في:\n\n• 📚 المقررات المتاحة والأسعار\n• 💳 طريقة الدفع والاشتراك\n• 🛡️ حماية المحتوى والتشفير\n• 📞 التواصل مع الأكاديمية\n\nجرّب صياغة سؤالك بطريقة أخرى، أو استخدم الاختصارات أعلاه.'
+    },
+    en: {
+        courses: {
+            keywords: ['course', 'courses', 'subject', 'subjects', 'classes', 'curriculum', 'curriculums', 'learn', 'lesson', 'lessons'],
+            reply: '📚 <strong>Courses available at the Academy:</strong>\n\n• Financial Analysis & Strategic Accounting (SAR 350)\n• International Business & Strategic Planning (SAR 420)\n• Digital Marketing & Brand Building (SAR 290)\n• Human Resources & Executive Leadership (SAR 380)\n• Supply Chain & Effective Logistics (SAR 310)\n• Principles of Economics for Managers (SAR 340)\n\nYou can browse them directly in the <strong>Courses</strong> section.'
+        },
+        payment: {
+            keywords: ['payment', 'pay', 'price', 'prices', 'cost', 'subscribe', 'mada', 'visa', 'apple', 'transfer', 'bank', 'moyasar'],
+            reply: '💳 <strong>Payment Method:</strong>\n\nWe offer fast and secure payment through <strong>Moyasar</strong> gateway, supporting:\n\n• Mada\n• Apple Pay\n• Bank transfer (Al Rajhi)\n\nOnce payment completes, your course is <strong>activated instantly</strong> on your account.'
+        },
+        subscribe: {
+            keywords: ['signup', 'sign up', 'register', 'join', 'enroll', 'enrolment', 'account', 'how to subscribe'],
+            reply: '✅ <strong>To sign up & subscribe:</strong>\n\n1. Click the <strong>"Sign in / OTP"</strong> button at the top\n2. Enter your phone number to receive an SMS code\n3. After activation, go to your desired course and click <strong>Subscribe / Watch</strong>\n4. Complete payment via Moyasar and the course activates instantly 🚀'
+        },
+        security: {
+            keywords: ['security', 'protection', 'drm', 'encryption', 'watermark', 'record', 'recording', 'download', 'screen capture', 'single device', 'device limit'],
+            reply: '🛡️ <strong>Content Protection:</strong>\n\n• <strong>HLS + DRM</strong> encryption via VdoCipher prevents downloading (IDM)\n• <strong>Dynamic watermarks</strong> showing your name, phone & IP during playback\n• <strong>Automatic black screen</strong> when screen recording (OBS) is detected\n• <strong>Single-device</strong> login only to prevent account sharing\n\nAll concurrent sessions are monitored in real time.'
+        },
+        contact: {
+            keywords: ['contact', 'phone', 'email', 'whatsapp', 'support', 'reach', 'talk', 'number'],
+            reply: '📞 <strong>Ways to contact the Academy:</strong>\n\n• WhatsApp: <strong dir="ltr">+966 56 005 6445</strong>\n• Email: <strong>support@bayan-mohamed.edu.sa</strong>\n• Location: Riyadh, Saudi Arabia\n• 24/7 technical support\n\nYou can also click the green WhatsApp button at the bottom left of the screen.'
+        },
+        about: {
+            keywords: ['bayan', 'who is', 'about', 'academy', 'platform', 'professor', 'teacher', 'instructor'],
+            reply: '🎓 <strong>About Bayan Mohamed Academy:</strong>\n\nA premium education platform offering simplified, protected explanations for university business students. Prof. Bayan Mohamed delivers rich content in financial analysis, marketing, strategic planning, and HR — bridging theory with real market applications.'
+        },
+        greeting: {
+            keywords: ['hello', 'hi', 'hey', 'good morning', 'good evening', 'greetings'],
+            reply: 'Hello there 🌟 Glad to help! Ask me about courses, pricing, how to subscribe, payment, or content protection. What would you like to know?'
+        },
+        thanks: {
+            keywords: ['thank', 'thanks', 'great', 'awesome', 'perfect', 'nice'],
+            reply: 'You\'re welcome! 😊 Happy to help. If you have any other questions, I\'m here for you. Best of luck in your learning journey!'
+        },
+        default: '🤔 I didn\'t quite understand. I can help you with:\n\n• 📚 Available courses & pricing\n• 💳 Payment & subscription\n• 🛡️ Content protection & encryption\n• 📞 Contacting the Academy\n\nPlease rephrase your question, or use the shortcuts above.'
+    }
+};
+
+function processChat(userText) {
+    const text = userText.toLowerCase();
+    const kb = chatKB[currentLang];
+
+    // Sort topics to match longest/specific keywords for "how to subscribe" before generic
+    const topics = ['subscribe', 'payment', 'security', 'contact', 'courses', 'about', 'greeting', 'thanks'];
+
+    let matched = false;
+    for (const t of topics) {
+        const topic = kb[t];
+        if (topic.keywords.some(k => text.includes(k.toLowerCase()))) {
+            showBotTyping(() => addBotMessage(topic.reply));
+            matched = true;
+            break;
+        }
+    }
+
+    if (!matched) {
+        showBotTyping(() => addBotMessage(kb.default));
+    }
+}
+
+// Language switcher current-lang helper (called from HTML)
+function setLanguage(lang) {
+    applyLanguage(lang);
 }

@@ -1,10 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أكاديمية بيان محمد | Bayan Mohamed Academy - Ultra Premium LMS</title>
     <meta name="description" content="منصة تعليمية فاخرة ومحمية للتخصصات الإدارية وإدارة الأعمال لطلاب الجامعات - أكاديمية بيان محمد">
+
+    <!-- Favicons (Business-themed: gold BM + uptrend chart) -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="shortcut icon" href="favicon.svg">
 
     <!-- ===== SEO / Social Sharing Meta Tags ===== -->
     <meta name="author" content="Bayan Mohamed Academy">
@@ -18,7 +23,7 @@
     <meta property="og:title" content="أكاديمية بيان محمد | Bayan Mohamed Academy - منصة تعليمية فاخرة">
     <meta property="og:description" content="تفوق في التخصصات الإدارية، التحليل المالي، التسويق، والتخطيط الاستراتيجي مع شروحات محمية بأحدث تقنيات المشاهدة الذكية والتشفير الآمن.">
     <meta property="og:url" content="https://bayan-mohamed.vercel.app/">
-    <meta property="og:image" content="https://bayan-mohamed.vercel.app/share-cover.jpg">
+    <meta property="og:image" content="https://bayan-mohamed.vercel.app/share-cover.svg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="أكاديمية بيان محمد - منصة تعليمية فاخرة للطلاب">
@@ -30,7 +35,7 @@
     <meta name="twitter:site" content="@BayanMohamedAcad">
     <meta name="twitter:title" content="أكاديمية بيان محمد | Bayan Mohamed Academy">
     <meta name="twitter:description" content="منصة تعليمية فاخرة للتخصصات الإدارية وإدارة الأعمال - محمية بأحدث تقنيات DRM.">
-    <meta name="twitter:image" content="https://bayan-mohamed.vercel.app/share-cover.jpg">
+    <meta name="twitter:image" content="https://bayan-mohamed.vercel.app/share-cover.svg">
     <meta name="twitter:image:alt" content="أكاديمية بيان محمد - منصة تعليمية فاخرة للطلاب">
     
     <!-- Google Fonts: Cairo & Outfit -->
@@ -60,7 +65,7 @@
                 </div>
                 <div class="brand-text">
                     <span class="brand-title">Bayan Mohamed</span>
-                    <span class="brand-subtitle">ACADEMY • التخصصات الإدارية</span>
+                    <span class="brand-subtitle" data-i18n="brandSubtitle">ACADEMY • التخصصات الإدارية</span>
                 </div>
             </div>
 
@@ -68,34 +73,110 @@
             <nav class="nav-links">
                 <button class="nav-btn active" id="nav-student" onclick="switchView('student-store')">
                     <i data-lucide="graduation-cap"></i>
-                    <span>بوابة الطلاب</span>
+                    <span data-i18n="navStudent">بوابة الطلاب</span>
                 </button>
                 <button class="nav-btn" id="nav-player" onclick="switchView('video-player')">
                     <i data-lucide="shield-check"></i>
-                    <span>مشغل الفيديو (DRM)</span>
+                    <span data-i18n="navPlayer">مشغل الفيديو (DRM)</span>
                 </button>
                 <button class="nav-btn" id="nav-admin" onclick="switchView('admin-dashboard')">
                     <i data-lucide="layout-dashboard"></i>
-                    <span>لوحة المشرف (iPad/الجوال)</span>
+                    <span data-i18n="navAdmin">لوحة المشرف (iPad/الجوال)</span>
                 </button>
             </nav>
 
             <div class="header-actions">
+                <!-- Language Toggle Icon (globe) -->
+                <button class="lang-toggle-btn" id="lang-toggle-btn" onclick="toggleLang()" title="العربية / English">
+                    <i data-lucide="languages"></i>
+                    <span class="lang-toggle-label" id="lang-toggle-label">ع</span>
+                </button>
+
+                <!-- Language Switcher (Saudi Flag = Arabic / US Flag = English) -->
+                <div class="lang-switcher" title="اختيار اللغة / Language Selection">
+                    <button class="lang-btn" id="lang-ar" onclick="setLanguage('ar')" title="العربية">
+                        <span class="flag-sa"></span>
+                    </button>
+                    <button class="lang-btn" id="lang-en" onclick="setLanguage('en')" title="English">
+                        <span class="flag-us"></span>
+                    </button>
+                </div>
+
                 <!-- Single Device Active Session Indicator -->
                 <div class="session-guard-badge" onclick="showDeviceGuardModal()" title="حالة حماية الجهاز الموحد">
                     <span class="pulse-dot"></span>
                     <i data-lucide="smartphone"></i>
-                    <span class="device-name">iPhone 15 Pro (نشط)</span>
+                    <span class="device-name" data-i18n="deviceBadge">iPhone 15 Pro (نشط)</span>
                 </div>
 
                 <!-- Auth / Profile Button -->
                 <button class="gold-btn-outline profile-btn" onclick="openOTPModal()">
                     <i data-lucide="user"></i>
-                    <span id="user-display-name">تسجيل الدخول / OTP</span>
+                    <span id="user-display-name" data-i18n="loginBtn">تسجيل الدخول / OTP</span>
+                </button>
+
+                <!-- Mobile Menu Hamburger -->
+                <button class="hamburger-btn" id="hamburger-btn" onclick="toggleMobileMenu()" aria-label="القائمة">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
                 </button>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Navigation Drawer (Off-canvas) -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="toggleMobileMenu(false)"></div>
+    <nav class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo-badge"><span class="logo-initials">BM</span></div>
+            <div class="brand-text">
+                <span class="brand-title">Bayan Mohamed</span>
+                <span class="brand-subtitle">ACADEMY • التخصصات الإدارية</span>
+            </div>
+            <button class="mobile-menu-close" onclick="toggleMobileMenu(false)"><i data-lucide="x"></i></button>
+        </div>
+
+        <div class="mobile-menu-body">
+            <span class="mobile-menu-label" data-i18n="navLabel">التنقل</span>
+            <button class="mobile-nav-item active" data-mnav="student-store" onclick="mobileGoTo('student-store')">
+                <i data-lucide="graduation-cap"></i>
+                <span data-i18n="navStudent">بوابة الطلاب</span>
+            </button>
+            <button class="mobile-nav-item" data-mnav="video-player" onclick="mobileGoTo('video-player')">
+                <i data-lucide="shield-check"></i>
+                <span data-i18n="navPlayer">مشغل الفيديو (DRM)</span>
+            </button>
+            <button class="mobile-nav-item" data-mnav="admin-dashboard" onclick="mobileGoTo('admin-dashboard')">
+                <i data-lucide="layout-dashboard"></i>
+                <span data-i18n="navAdmin">لوحة المشرف (iPad/الجوال)</span>
+            </button>
+
+            <div class="mobile-menu-divider"></div>
+
+            <span class="mobile-menu-label" data-i18n="langLabel">اللغة</span>
+            <div class="mobile-lang-row">
+                <button class="lang-btn" id="m-lang-ar" onclick="setLanguage('ar')" title="العربية">
+                    <span class="flag-sa"></span><span class="mobile-lang-name">العربية</span>
+                </button>
+                <button class="lang-btn" id="m-lang-en" onclick="setLanguage('en')" title="English">
+                    <span class="flag-us"></span><span class="mobile-lang-name">English</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="mobile-menu-footer">
+            <button class="gold-btn-solid full-width" onclick="closeMobileMenu(); openOTPModal();">
+                <i data-lucide="user"></i>
+                <span data-i18n="loginBtn">تسجيل الدخول / OTP</span>
+            </button>
+            <div class="mobile-session" onclick="closeMobileMenu(); showDeviceGuardModal();">
+                <span class="pulse-dot"></span>
+                <i data-lucide="smartphone"></i>
+                <span data-i18n="deviceBadge">iPhone 15 Pro (نشط)</span>
+            </div>
+        </div>
+    </nav>
 
     <!-- MAIN CONTENT CONTAINER -->
     <main class="main-layout">
@@ -108,13 +189,13 @@
                 <div class="hero-content">
                     <div class="gold-pill-tag">
                         <i data-lucide="sparkles"></i>
-                        <span>منصة تعليمية فاخرة لطلاب تخصصات الأعمال</span>
+                        <span data-i18n="heroPill">منصة تعليمية فاخرة لطلاب تخصصات الأعمال</span>
                     </div>
                     <h1 class="hero-title">
-                        Master Business with <br>
+                        <span data-i18n="heroTitle1">Master Business with</span> <br>
                         <span class="gold-gradient-text">Bayan Mohamed</span>
                     </h1>
-                    <p class="hero-subtitle">
+                    <p class="hero-subtitle" data-i18n="heroSubtitle">
                         تفوق في المواد الإدارية، التحليل المالي، التسويق، والتخطيط الاستراتيجي مع شروحات مبسطة ومحمية بأحدث تقنيات المشاهدة الذكية والتشفير الآمن.
                     </p>
 
@@ -128,11 +209,11 @@
                     <div class="hero-actions">
                         <button class="gold-btn-solid" onclick="switchView('video-player')">
                             <i data-lucide="play-circle"></i>
-                            <span>ابدأ مشاهدة الكورسات</span>
+                            <span data-i18n="heroCta1">ابدأ مشاهدة الكورسات</span>
                         </button>
                         <button class="glass-btn-secondary" onclick="scrollToCatalog()">
                             <i data-lucide="book-open"></i>
-                            <span>تصفح المقررات الدراسية</span>
+                            <span data-i18n="heroCta2">تصفح المقررات الدراسية</span>
                         </button>
                     </div>
                 </div>
@@ -469,7 +550,7 @@
                     <!-- Admin Top Bar -->
                     <div class="admin-top-bar">
                         <div class="welcome-text">
-                            <h2>Welcome back, <span class="gold-gradient-text">Admin Sarah!</span></h2>
+                            <h2>Welcome back, <span class="gold-gradient-text">Prof. Bayan Mohamed</span></h2>
                             <p>نظام التحكم الشامل لأكاديمية بيان محمد - تحكم كامل بالسعة وإحصائيات الطلاب</p>
                         </div>
                         <div class="admin-actions">
@@ -597,8 +678,8 @@
                                         <tr>
                                             <td>
                                                 <div class="user-cell">
-                                                    <div class="avatar">AS</div>
-                                                    <span>Admin Sarah</span>
+                                                    <div class="avatar">BM</div>
+                                                    <span>Prof. Bayan Mohamed</span>
                                                 </div>
                                             </td>
                                             <td>Beginner of Student</td>
@@ -608,7 +689,7 @@
                                             <td>22 months ago</td>
                                             <td>iPad Pro (185.220.101.42)</td>
                                             <td><span class="badge-active">Active</span></td>
-                                            <td><button class="kick-btn" onclick="revokeStudentSession('Admin Sarah')">طرد الجهاز</button></td>
+                                            <td><button class="kick-btn" onclick="revokeStudentSession('Prof. Bayan Mohamed')">طرد الجهاز</button></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -788,7 +869,7 @@
     <!-- MODAL 1: PHONE OTP AUTHENTICATION MODAL -->
     <div id="otp-modal" class="modal-backdrop">
         <div class="modal-glass-card">
-            <button class="close-modal-btn" onclick="closeOTPModal()"><i data-lucide="x"></i></button>
+            <button class="close-modal-btn" onclick="closeOTPModal()"><i data-lucide="x">×</i></button>
             
             <div class="modal-header">
                 <div class="gold-icon-circle"><i data-lucide="smartphone"></i></div>
@@ -838,7 +919,7 @@
     <!-- MODAL 2: MOYASAR PAYMENT GATEWAY MODAL -->
     <div id="moyasar-modal" class="modal-backdrop">
         <div class="modal-glass-card payment-modal">
-            <button class="close-modal-btn" onclick="closeMoyasarModal()"><i data-lucide="x"></i></button>
+            <button class="close-modal-btn" onclick="closeMoyasarModal()"><i data-lucide="x">×</i></button>
 
             <div class="modal-header">
                 <div class="moyasar-badge-header">
@@ -866,20 +947,20 @@
             <div id="pay-tab-mada" class="pay-pane active">
                 <div class="form-group">
                     <label>اسم حامل البطاقة:</label>
-                    <input type="text" placeholder="AHMED MOHAMMED" id="card-holder">
+                    <input type="text" placeholder="AHMED MOHAMMED" id="card-holder" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label>رقم بطاقة مدى / الفيزا:</label>
-                    <input type="text" placeholder="5888 •••• •••• 1234" id="card-number" maxlength="19">
+                    <input type="text" placeholder="5888 •••• •••• 1234" id="card-number" maxlength="19" inputmode="numeric" autocomplete="off" pattern="[0-9 ]*">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label>تاريخ الانتهاء:</label>
-                        <input type="text" placeholder="MM/YY" maxlength="5">
+                        <input type="text" placeholder="MM/YY" maxlength="5" inputmode="numeric" autocomplete="off" pattern="[0-9/]*">
                     </div>
                     <div class="form-group">
                         <label>رمز الأمان (CVC):</label>
-                        <input type="password" placeholder="•••" maxlength="3">
+                        <input type="password" placeholder="•••" maxlength="3" inputmode="numeric" autocomplete="off" pattern="[0-9]*">
                     </div>
                 </div>
             </div>
@@ -912,7 +993,7 @@
     <!-- MODAL 3: SINGLE DEVICE KICK / NOTICE MODAL -->
     <div id="device-modal" class="modal-backdrop">
         <div class="modal-glass-card">
-            <button class="close-modal-btn" onclick="closeDeviceModal()"><i data-lucide="x"></i></button>
+            <button class="close-modal-btn" onclick="closeDeviceModal()"><i data-lucide="x">×</i></button>
             <div class="modal-header">
                 <div class="gold-icon-circle"><i data-lucide="shield-check"></i></div>
                 <h3>حالة حماية الجهاز الموحد (Single Device)</h3>
@@ -965,7 +1046,7 @@
                     <li><a href="#" onclick="switchView('student-store')"><i data-lucide="chevron-left"></i> بوابة الطلاب</a></li>
                     <li><a href="#" onclick="switchView('video-player')"><i data-lucide="chevron-left"></i> مشغل الفيديو</a></li>
                     <li><a href="#" onclick="switchView('admin-dashboard')"><i data-lucide="chevron-left"></i> لوحة المشرف</a></li>
-                    <li><a href="#" onclick="scrollToCatalog()"><i data-lucide="chevron-left"></i> المقررات الدراسية</a></li>
+                    <li><a href="#" onclick="goToCategory('all'); return false;"><i data-lucide="chevron-left"></i> المقررات الدراسية</a></li>
                 </ul>
             </div>
 
@@ -973,10 +1054,11 @@
             <div class="footer-col">
                 <h4 class="footer-title">المقررات</h4>
                 <ul class="footer-links">
-                    <li><a href="#" onclick="filterCourses('finance'); scrollToCatalog()">التحليل المالي</a></li>
-                    <li><a href="#" onclick="filterCourses('management'); scrollToCatalog()">إدارة الأعمال</a></li>
-                    <li><a href="#" onclick="filterCourses('marketing'); scrollToCatalog()">التسويق الرقمي</a></li>
-                    <li><a href="#" onclick="filterCourses('hr'); scrollToCatalog()">الموارد البشرية</a></li>
+                    <li><a href="#" onclick="goToCategory('all'); return false;"><i data-lucide="chevron-left"></i> جميع المقررات</a></li>
+                    <li><a href="#" onclick="goToCategory('finance'); return false;"><i data-lucide="chevron-left"></i> التحليل المالي</a></li>
+                    <li><a href="#" onclick="goToCategory('management'); return false;"><i data-lucide="chevron-left"></i> إدارة الأعمال</a></li>
+                    <li><a href="#" onclick="goToCategory('marketing'); return false;"><i data-lucide="chevron-left"></i> التسويق الرقمي</a></li>
+                    <li><a href="#" onclick="goToCategory('hr'); return false;"><i data-lucide="chevron-left"></i> الموارد البشرية</a></li>
                 </ul>
             </div>
 
@@ -994,18 +1076,61 @@
         </div>
 
         <div class="footer-bottom">
-            <p>© <span id="footer-year">2026</span> <strong class="text-gold">أكاديمية بيان محمد</strong> — جميع الحقوق محفوظة.</p>
-            <p class="footer-tech"><i data-lucide="shield-check"></i> مشاهدة آمنة بتقنية DRM • تشفير HLS</p>
+            <p>© <span id="footer-year">2026</span> <strong class="text-gold">Bayan Mohamed Academy</strong> — <span data-i18n="footerYearSuffix">جميع الحقوق محفوظة.</span></p>
+            <p class="footer-tech"><i data-lucide="shield-check"></i> <span data-i18n="footerTech">مشاهدة آمنة بتقنية DRM • تشفير HLS</span></p>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Support Button -->
+    <!-- ==================== AI ASSISTANT CHATBOT ==================== -->
+    <!-- Chat Panel -->
+    <div id="chat-panel" class="chat-panel">
+        <div class="chat-header">
+            <div class="chat-avatar">
+                <div class="logo-badge"><span class="logo-initials">BM</span></div>
+            </div>
+            <div class="chat-header-info">
+                <h4 id="chat-header-title" data-i18n="chatTitle">مساعد أكاديمية بيان محمد</h4>
+                <span class="chat-status"><span class="pulse-dot"></span> <span data-i18n="chatStatus">متصل الآن</span></span>
+            </div>
+            <div class="chat-header-actions">
+                <a href="https://wa.me/966560056445?text=مرحباً،%20أرغب%20بالاستفسار%20عن%20أكاديمية%20بيان%20محمد"
+                   class="chat-wa-btn" target="_blank" rel="noopener" title="تواصل عبر واتساب">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </a>
+                <button class="chat-close-btn" onclick="toggleChat(false)" title="إغلاق"><i data-lucide="x"></i></button>
+            </div>
+        </div>
+
+        <div class="chat-body" id="chat-body">
+            <!-- Messages injected via JS -->
+        </div>
+
+        <!-- Quick Reply Chips -->
+        <div class="chat-quick-replies" id="chat-quick-replies"></div>
+
+        <!-- Input Area -->
+        <div class="chat-input-area">
+            <textarea id="chat-input" rows="1" data-i18n-placeholder="chatPlaceholder" placeholder="اكتب رسالتك هنا..." onkeydown="handleChatKey(event)"></textarea>
+            <button class="chat-send-btn" onclick="sendChatMessage()">
+                <i data-lucide="send"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Chat Launcher (bottom-right) -->
+    <button class="chat-launcher" onclick="toggleChat()" title="المساعد الافتراضي">
+        <i data-lucide="message-circle" class="launcher-icon-open"></i>
+        <i data-lucide="x" class="launcher-icon-close"></i>
+        <span class="launcher-badge">1</span>
+    </button>
+
+    <!-- Floating WhatsApp Support Button (bottom-left) -->
     <a href="https://wa.me/966560056445?text=مرحباً،%20أرغب%20بالاستفسار%20عن%20أكاديمية%20بيان%20محمد"
        class="whatsapp-float" target="_blank" rel="noopener" title="تواصل معنا عبر واتساب">
         <svg viewBox="0 0 24 24" width="30" height="30" fill="#ffffff">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
-        <span class="whatsapp-tooltip">تواصل معنا</span>
+        <span class="whatsapp-tooltip" data-i18n="whatsappTooltip">تواصل معنا</span>
     </a>
 
     <!-- Scripts -->
