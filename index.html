@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أكاديمية بيان محمد | Bayan Mohamed Academy - Ultra Premium LMS</title>
+    <meta name="description" content="منصة تعليمية فاخرة ومحمية للتخصصات الإدارية وإدارة الأعمال لطلاب الجامعات - أكاديمية بيان محمد">
+    
+    <!-- Google Fonts: Cairo & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+
+    <!-- Ambient Glow Background Effects -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <!-- Navigation Header -->
+    <header class="glass-header">
+        <div class="header-container">
+            <div class="logo-brand" onclick="switchView('student-store')">
+                <div class="logo-badge">
+                    <span class="logo-initials">BM</span>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">Bayan Mohamed</span>
+                    <span class="brand-subtitle">ACADEMY • التخصصات الإدارية</span>
+                </div>
+            </div>
+
+            <!-- Main View Nav Switcher -->
+            <nav class="nav-links">
+                <button class="nav-btn active" id="nav-student" onclick="switchView('student-store')">
+                    <i data-lucide="graduation-cap"></i>
+                    <span>بوابة الطلاب</span>
+                </button>
+                <button class="nav-btn" id="nav-player" onclick="switchView('video-player')">
+                    <i data-lucide="shield-check"></i>
+                    <span>مشغل الفيديو (DRM)</span>
+                </button>
+                <button class="nav-btn" id="nav-admin" onclick="switchView('admin-dashboard')">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>لوحة المشرف (iPad/الجوال)</span>
+                </button>
+            </nav>
+
+            <div class="header-actions">
+                <!-- Single Device Active Session Indicator -->
+                <div class="session-guard-badge" onclick="showDeviceGuardModal()" title="حالة حماية الجهاز الموحد">
+                    <span class="pulse-dot"></span>
+                    <i data-lucide="smartphone"></i>
+                    <span class="device-name">iPhone 15 Pro (نشط)</span>
+                </div>
+
+                <!-- Auth / Profile Button -->
+                <button class="gold-btn-outline profile-btn" onclick="openOTPModal()">
+                    <i data-lucide="user"></i>
+                    <span id="user-display-name">تسجيل الدخول / OTP</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="main-layout">
+
+        <!-- VIEW 1: STUDENT STOREFRONT & CATALOG -->
+        <section id="view-student-store" class="view-section active">
+            
+            <!-- Hero Banner Section -->
+            <div class="hero-glass-card">
+                <div class="hero-content">
+                    <div class="gold-pill-tag">
+                        <i data-lucide="sparkles"></i>
+                        <span>منصة تعليمية فاخرة لطلاب تخصصات الأعمال</span>
+                    </div>
+                    <h1 class="hero-title">
+                        Master Business with <br>
+                        <span class="gold-gradient-text">Bayan Mohamed</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        تفوق في المواد الإدارية، التحليل المالي، التسويق، والتخطيط الاستراتيجي مع شروحات مبسطة ومحمية بأحدث تقنيات المشاهدة الذكية والتشفير الآمن.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="gold-btn-solid" onclick="switchView('video-player')">
+                            <i data-lucide="play-circle"></i>
+                            <span>ابدأ مشاهدة الكورسات</span>
+                        </button>
+                        <button class="glass-btn-secondary" onclick="scrollToCatalog()">
+                            <i data-lucide="book-open"></i>
+                            <span>تصفح المقررات الدراسية</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="floating-glass-stat card-1">
+                        <div class="stat-icon-gold"><i data-lucide="shield-alert"></i></div>
+                        <div>
+                            <h4>تشفير HLS + DRM</h4>
+                            <p>حماية 100% ضد IDM والتسجيل</p>
+                        </div>
+                    </div>
+                    <div class="floating-glass-stat card-2">
+                        <div class="stat-icon-gold"><i data-lucide="users"></i></div>
+                        <div>
+                            <h4>500+ طالب متزامن</h4>
+                            <p>أداء سحابي فائق السرعة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platform Highlights Bar -->
+            <div class="features-grid">
+                <div class="feature-glass-box">
+                    <div class="feature-icon"><i data-lucide="lock"></i></div>
+                    <h3>علامة مائية ديناميكية</h3>
+                    <p>بيانات الطالب (الاسم، الجوال، الإيميل) تظهر متحركة طوال فترة المشاهدة لمنع التسريب.</p>
+                </div>
+                <div class="feature-glass-box">
+                    <div class="feature-icon"><i data-lucide="smartphone"></i></div>
+                    <h3>جهاز واحد للمستخدم</h3>
+                    <p>نظام Single Device Login تلقائي يضمن عدم مشاركة الحساب وطرد الجلسات المزدوجة.</p>
+                </div>
+                <div class="feature-glass-box">
+                    <div class="feature-icon"><i data-lucide="credit-card"></i></div>
+                    <h3>دفع فوري عبر Moyasar</h3>
+                    <p>دعم مدى، Apple Pay، والتحويل البنكي مع تفعيل تلقائي فوري للكورس فور إتمام الدفع.</p>
+                </div>
+                <div class="feature-glass-box">
+                    <div class="feature-icon"><i data-lucide="tablet-smartphone"></i></div>
+                    <h3>لوحة تحكم للـ iPad</h3>
+                    <p>إدارة المنصة ورفع الفيديوهات مباشرة من الآيباد أو الجوال بسهولة مطلقة.</p>
+                </div>
+            </div>
+
+            <!-- Student Dashboard Quick Stats -->
+            <div class="section-header">
+                <h2>إحصائياتي في الأكاديمية <span class="gold-dot">•</span></h2>
+                <p>متابعة التطور ومؤشرات الإنجاز الحالية</p>
+            </div>
+
+            <div class="student-stats-row">
+                <div class="student-stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">المقررات المسجلة</span>
+                        <i data-lucide="book-marked" class="gold-icon"></i>
+                    </div>
+                    <div class="stat-value">43</div>
+                    <div class="stat-footer text-gold">4 كورسات مكتملة</div>
+                </div>
+
+                <div class="student-stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">ساعات المشاهدة</span>
+                        <i data-lucide="clock" class="gold-icon"></i>
+                    </div>
+                    <div class="stat-value">13 <span class="unit">ساعة</span></div>
+                    <div class="stat-footer text-success">+3.5 ساعات هذا الأسبوع</div>
+                </div>
+
+                <div class="student-stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">إجمالي التعلم</span>
+                        <i data-lucide="award" class="gold-icon"></i>
+                    </div>
+                    <div class="stat-value">55 <span class="unit">درس</span></div>
+                    <div class="stat-footer text-gold">نسبة تفاعل عالية</div>
+                </div>
+
+                <div class="student-stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">معدل الإنجاز العام</span>
+                        <i data-lucide="trending-up" class="gold-icon"></i>
+                    </div>
+                    <div class="stat-value">455 <span class="unit">نقطة</span></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: 78%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Catalog Grid Section -->
+            <div id="course-catalog-section" class="section-header">
+                <h2>المقررات الدراسية المتاحة <span class="gold-dot">•</span></h2>
+                <p>اختر المقرر الدراسي للبدء في المشاهدة أو الاشتراك التلقائي</p>
+            </div>
+
+            <!-- Filter Categories -->
+            <div class="category-tabs">
+                <button class="tab-btn active" onclick="filterCourses('all')">الكل</button>
+                <button class="tab-btn" onclick="filterCourses('management')">إدارة الأعمال</button>
+                <button class="tab-btn" onclick="filterCourses('finance')">التحليل المالي</button>
+                <button class="tab-btn" onclick="filterCourses('marketing')">التسويق الرقمي</button>
+                <button class="tab-btn" onclick="filterCourses('hr')">الموارد البشرية</button>
+            </div>
+
+            <!-- Catalog Cards Grid -->
+            <div class="courses-grid" id="courses-grid-container">
+                <!-- Course Cards generated via JS -->
+            </div>
+
+        </section>
+
+
+        <!-- VIEW 2: SECURE DRM VIDEO PLAYER SECTION -->
+        <section id="view-video-player" class="view-section">
+            
+            <div class="player-page-header">
+                <button class="back-link-btn" onclick="switchView('student-store')">
+                    <i data-lucide="arrow-right"></i>
+                    <span>العودة إلى المقررات</span>
+                </button>
+                <div class="course-meta-title">
+                    <h2>التحليل المالي والمحاسبة الاستراتيجية - الدرس 3: تحليل القوائم المالية والنسب</h2>
+                    <span class="security-status-badge">
+                        <i data-lucide="shield-check"></i> VdoCipher DRM Protected (HLS Encrypted)
+                    </span>
+                </div>
+            </div>
+
+            <!-- Security Controls Control Bar -->
+            <div class="security-controls-banner">
+                <div class="sec-item">
+                    <i data-lucide="shield"></i>
+                    <span>العلامة المائية الديناميكية: <strong class="text-gold">نشطة (تتحرك تلقائياً)</strong></span>
+                </div>
+                <div class="sec-item">
+                    <i data-lucide="lock"></i>
+                    <span>حماية التحميل IDM: <strong class="text-gold">مفعّلة (تشفير مقطعي)</strong></span>
+                </div>
+                <div class="sec-item">
+                    <i data-lucide="video-off"></i>
+                    <span>حماية تسجيل الشاشة OBS: </span>
+                    <button class="toggle-obs-btn" id="obs-toggle-btn" onclick="toggleOBSProtection()">
+                        اختبار كشف تسجيل الشاشة
+                    </button>
+                </div>
+            </div>
+
+            <!-- Video Player Grid Container -->
+            <div class="video-player-grid">
+                
+                <!-- Main Player Box -->
+                <div class="video-stage-container">
+                    
+                    <!-- Simulated Blackout Screen overlay for OBS detection -->
+                    <div id="obs-blackout-overlay" class="obs-blackout-screen">
+                        <div class="obs-warning-box">
+                            <i data-lucide="alert-triangle" class="warning-icon-gold"></i>
+                            <h3>تم كشف محاولة تسجيل الشاشة! (OBS / Screen Capture)</h3>
+                            <p>يتم حجب الفيديو بشاشة سوداء لحماية حقوق الملكية الفكرية لأكاديمية بيان محمد.</p>
+                            <span class="student-info-tag">الطالب: أحمد محمد علي | IP: 185.220.101.42</span>
+                            <button class="gold-btn-solid mt-4" onclick="toggleOBSProtection()">إغلاق الوضع التجريبي للحجب</button>
+                        </div>
+                    </div>
+
+                    <!-- Video Container with Dynamic Watermark Canvas -->
+                    <div class="video-canvas-wrapper" id="video-wrapper">
+                        
+                        <!-- Simulated Canvas Dynamic Watermark Overlay -->
+                        <canvas id="watermarkCanvas" class="watermark-canvas"></canvas>
+
+                        <!-- Main HTML5 Video Element -->
+                        <video id="main-course-video" poster="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80">
+                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                            متصفحك لا يدعم مشغل الفيديو
+                        </video>
+
+                        <!-- Custom DRM Video Controls Overlay -->
+                        <div class="custom-video-controls" id="video-controls">
+                            <div class="progress-slider-bar" onclick="seekVideo(event)">
+                                <div class="progress-fill" id="video-progress-fill"></div>
+                            </div>
+
+                            <div class="controls-row">
+                                <div class="controls-left">
+                                    <button class="ctrl-btn" onclick="togglePlayPause()" id="play-pause-btn">
+                                        <i data-lucide="play"></i>
+                                    </button>
+                                    <span class="time-display" id="time-display">00:00 / 12:45</span>
+                                    <span class="drm-pill">HLS 1080p DRM</span>
+                                </div>
+
+                                <div class="controls-right">
+                                    <button class="ctrl-btn" onclick="changePlaybackSpeed()" id="speed-btn" title="سرعة التشغيل">1.0x</button>
+                                    <button class="ctrl-btn" onclick="toggleFullScreen()" title="شاشة كاملة">
+                                        <i data-lucide="maximize"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lesson Details -->
+                    <div class="lesson-info-card">
+                        <div class="info-header">
+                            <div>
+                                <h3>تفاصيل الدرس الثالث: تحليل القوائم المالية والمؤشرات</h3>
+                                <p class="instructor-tag">تقديم المحاضر: أ. بيان محمد | مادة التحليل المالي</p>
+                            </div>
+                            <button class="gold-btn-outline" onclick="openMoyasarModal('التحليل المالي والمحاسبة الاستراتيجية', 350)">
+                                <i data-lucide="shopping-bag"></i>
+                                <span>شراء المقرر الكامل (350 ر.س)</span>
+                            </button>
+                        </div>
+                        <p class="lesson-description">
+                            في هذا الدرس نتعلم كيفية قراءة قائمة الدخل، الميزانية العمومية، وقائمة التدفقات النقدية، وحساب النسبة السريعة ونسبة التداول ومعدل دوران الأصول لدعم القرار الإداري والاستثماري.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Lessons & Syllabus Sidebar -->
+                <div class="playlist-sidebar">
+                    <div class="playlist-header">
+                        <h3>فصول المقرر الدراسي</h3>
+                        <span class="badge-count">12 درس</span>
+                    </div>
+
+                    <div class="lessons-list">
+                        <div class="lesson-item active">
+                            <div class="lesson-num">1</div>
+                            <div class="lesson-title-box">
+                                <h4>مقدمة في التحليل المالي والمفاهيم الأساسية</h4>
+                                <span class="duration"><i data-lucide="clock"></i> 14 دقيقة • جاري المشاهدة</span>
+                            </div>
+                            <i data-lucide="play-circle" class="status-icon gold"></i>
+                        </div>
+
+                        <div class="lesson-item">
+                            <div class="lesson-num">2</div>
+                            <div class="lesson-title-box">
+                                <h4>قراءة الميزانية العمومية وتحليل الأصول والخصوم</h4>
+                                <span class="duration"><i data-lucide="clock"></i> 22 دقيقة</span>
+                            </div>
+                            <i data-lucide="lock" class="status-icon"></i>
+                        </div>
+
+                        <div class="lesson-item">
+                            <div class="lesson-num">3</div>
+                            <div class="lesson-title-box">
+                                <h4>نسب الربحية وسيولة الشركة والتدفقات النقدية</h4>
+                                <span class="duration"><i data-lucide="clock"></i> 18 دقيقة</span>
+                            </div>
+                            <i data-lucide="lock" class="status-icon"></i>
+                        </div>
+
+                        <div class="lesson-item">
+                            <div class="lesson-num">4</div>
+                            <div class="lesson-title-box">
+                                <h4>حالة دراسية عملية: تحليل شركة مساهمة</h4>
+                                <span class="duration"><i data-lucide="clock"></i> 30 دقيقة</span>
+                            </div>
+                            <i data-lucide="lock" class="status-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Downloadable Resources -->
+                    <div class="attachments-box">
+                        <h4>ملحقات ومذكرات الدرس (PDF)</h4>
+                        <div class="file-attachment-row">
+                            <i data-lucide="file-text" class="gold-icon"></i>
+                            <div class="file-meta">
+                                <span>حقيبة التحليل المالي 2026.pdf</span>
+                                <small>4.2 ميجابايت • محمي بعلامة مائية</small>
+                            </div>
+                            <button class="download-icon-btn"><i data-lucide="download"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- VIEW 3: ULTRA-PREMIUM ADMIN DASHBOARD (MATCHING IMAGE 2) -->
+        <section id="view-admin-dashboard" class="view-section">
+            
+            <div class="admin-workspace">
+                
+                <!-- Admin Sidebar (iPad / Mobile Optimized) -->
+                <aside class="admin-sidebar">
+                    <div class="admin-logo-box">
+                        <div class="logo-badge-gold">
+                            <span>BM</span>
+                        </div>
+                        <div class="admin-brand-info">
+                            <h3>Bayan Mohamed</h3>
+                            <p>Academy Admin</p>
+                        </div>
+                    </div>
+
+                    <ul class="admin-menu">
+                        <li class="menu-item active" onclick="switchAdminTab(this, 'tab-analytics')">
+                            <i data-lucide="layout-dashboard"></i>
+                            <span>لوحة التحليلات</span>
+                        </li>
+                        <li class="menu-item" onclick="switchAdminTab(this, 'tab-upload')">
+                            <i data-lucide="upload-cloud"></i>
+                            <span>رفع فيديوهات (iPad)</span>
+                        </li>
+                        <li class="menu-item" onclick="switchAdminTab(this, 'tab-students')">
+                            <i data-lucide="users"></i>
+                            <span>إدارة الطلاب والأجهزة</span>
+                        </li>
+                        <li class="menu-item" onclick="switchAdminTab(this, 'tab-security')">
+                            <i data-lucide="shield-alert"></i>
+                            <span>إعدادات DRM والعلامة المائية</span>
+                        </li>
+                    </ul>
+
+                    <div class="admin-ipad-badge">
+                        <i data-lucide="tablet"></i>
+                        <span>نموذج تحكم الآيباد والجوال</span>
+                    </div>
+                </aside>
+
+                <!-- Admin Main Dashboard Content Area -->
+                <main class="admin-main-content">
+                    
+                    <!-- Admin Top Bar -->
+                    <div class="admin-top-bar">
+                        <div class="welcome-text">
+                            <h2>Welcome back, <span class="gold-gradient-text">Admin Sarah!</span></h2>
+                            <p>نظام التحكم الشامل لأكاديمية بيان محمد - تحكم كامل بالسعة وإحصائيات الطلاب</p>
+                        </div>
+                        <div class="admin-actions">
+                            <div class="search-input-box">
+                                <i data-lucide="search"></i>
+                                <input type="text" placeholder="بحث عن طالب، كورس، أو معاملة...">
+                            </div>
+                            <button class="icon-circle-btn" title="الإشعارات">
+                                <i data-lucide="bell"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ADMIN TAB 1: ANALYTICS & METRICS -->
+                    <div id="tab-analytics" class="admin-tab-pane active">
+                        
+                        <!-- Top Stat Cards Grid (Exact design match with reference image 2) -->
+                        <div class="admin-metrics-grid">
+                            
+                            <div class="admin-stat-card gold-border-glow">
+                                <div class="card-top">
+                                    <span class="card-label">Total Students</span>
+                                    <div class="card-icon-gold"><i data-lucide="users"></i></div>
+                                </div>
+                                <div class="card-main-val">14,352</div>
+                                <div class="card-trend text-gold">+12.5% هذا الشهر</div>
+                            </div>
+
+                            <div class="admin-stat-card gold-border-glow">
+                                <div class="card-top">
+                                    <span class="card-label">Total Revenue</span>
+                                    <div class="card-icon-gold"><i data-lucide="dollar-sign"></i></div>
+                                </div>
+                                <div class="card-main-val">$1,289,450 <span class="sar-equiv">(4,835,437 ر.س)</span></div>
+                                <div class="card-trend text-gold">ربط مباشر Moyasar Webhook</div>
+                            </div>
+
+                            <div class="admin-stat-card gold-border-glow">
+                                <div class="card-top">
+                                    <span class="card-label">Active Subscriptions</span>
+                                    <div class="card-icon-gold"><i data-lucide="activity"></i></div>
+                                </div>
+                                <div class="card-main-val">9,871</div>
+                                <div class="card-trend text-gold">500 طالب متزامن حالياً</div>
+                            </div>
+
+                        </div>
+
+                        <!-- Interactive Sales & Enrollments SVG Chart Container -->
+                        <div class="admin-chart-card">
+                            <div class="chart-header">
+                                <div>
+                                    <h3>Sales & Enrollments Over Time</h3>
+                                    <p>متابعة المبيعات واشتراكات الطلاب خلال الأشهر الأخيرة</p>
+                                </div>
+                                <div class="chart-legend">
+                                    <span class="legend-dot gold"></span> المبيعات (ر.س)
+                                    <span class="legend-dot teal"></span> التسجيلات الجديدة
+                                </div>
+                            </div>
+
+                            <!-- Animated Interactive SVG Wave Chart -->
+                            <div class="svg-chart-wrapper">
+                                <svg viewBox="0 0 800 240" class="interactive-chart-svg">
+                                    <defs>
+                                        <linearGradient id="goldGradient" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.4"/>
+                                            <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.0"/>
+                                        </linearGradient>
+                                        <linearGradient id="tealGradient" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#2DD4BF" stop-opacity="0.3"/>
+                                            <stop offset="100%" stop-color="#2DD4BF" stop-opacity="0.0"/>
+                                        </linearGradient>
+                                    </defs>
+
+                                    <!-- Grid Lines -->
+                                    <line x1="0" y1="40" x2="800" y2="40" stroke="rgba(255,255,255,0.05)" />
+                                    <line x1="0" y1="90" x2="800" y2="90" stroke="rgba(255,255,255,0.05)" />
+                                    <line x1="0" y1="140" x2="800" y2="140" stroke="rgba(255,255,255,0.05)" />
+                                    <line x1="0" y1="190" x2="800" y2="190" stroke="rgba(255,255,255,0.05)" />
+
+                                    <!-- Gold Area & Path -->
+                                    <path d="M0,200 Q100,120 200,160 T400,90 T600,110 T800,50 L800,220 L0,220 Z" fill="url(#goldGradient)"/>
+                                    <path d="M0,200 Q100,120 200,160 T400,90 T600,110 T800,50" fill="none" stroke="#D4AF37" stroke-width="3"/>
+
+                                    <!-- Teal Area & Path -->
+                                    <path d="M0,210 Q100,180 200,140 T400,150 T600,80 T800,90 L800,220 L0,220 Z" fill="url(#tealGradient)"/>
+                                    <path d="M0,210 Q100,180 200,140 T400,150 T600,80 T800,90" fill="none" stroke="#2DD4BF" stroke-width="3" stroke-dasharray="5 5"/>
+
+                                    <!-- Interactive Tooltip Marker -->
+                                    <circle cx="500" cy="98" r="6" fill="#D4AF37" stroke="#fff" stroke-width="2"/>
+                                    <rect x="440" y="55" width="120" height="32" rx="6" fill="#182032" stroke="rgba(212,175,55,0.4)"/>
+                                    <text x="500" y="76" fill="#FFE082" font-size="12" text-anchor="middle" font-weight="bold">Sales & Tooltips: $14,250</text>
+                                </svg>
+
+                                <div class="chart-months-labels">
+                                    <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Nov</span><span>Dec</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Student Activity Table (Matching reference image 2) -->
+                        <div class="admin-table-card">
+                            <div class="table-header">
+                                <h3>Recent Student Activity</h3>
+                                <button class="glass-btn-sm" onclick="refreshStudentActivity()">
+                                    <i data-lucide="refresh-cw"></i> تحديث اللحظي
+                                </button>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Student Name</th>
+                                            <th>Course</th>
+                                            <th>Progress</th>
+                                            <th>Last Activity</th>
+                                            <th>Device / IP</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="student-activity-tbody">
+                                        <tr>
+                                            <td>
+                                                <div class="user-cell">
+                                                    <div class="avatar">AS</div>
+                                                    <span>Admin Sarah</span>
+                                                </div>
+                                            </td>
+                                            <td>Beginner of Student</td>
+                                            <td>
+                                                <div class="tbl-progress"><div class="fill" style="width: 85%;"></div></div>
+                                            </td>
+                                            <td>22 months ago</td>
+                                            <td>iPad Pro (185.220.101.42)</td>
+                                            <td><span class="badge-active">Active</span></td>
+                                            <td><button class="kick-btn" onclick="revokeStudentSession('Admin Sarah')">طرد الجهاز</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="user-cell">
+                                                    <div class="avatar">AH</div>
+                                                    <span>Aarah Honte</span>
+                                                </div>
+                                            </td>
+                                            <td>Completed Learner</td>
+                                            <td>
+                                                <div class="tbl-progress"><div class="fill" style="width: 100%;"></div></div>
+                                            </td>
+                                            <td>18 minute ago</td>
+                                            <td>MacBook Air (94.120.44.11)</td>
+                                            <td><span class="badge-completed">Completed</span></td>
+                                            <td><button class="kick-btn" onclick="revokeStudentSession('Aarah Honte')">طرد الجهاز</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="user-cell">
+                                                    <div class="avatar">AU</div>
+                                                    <span>Annn Uihan</span>
+                                                </div>
+                                            </td>
+                                            <td>Course Ysay</td>
+                                            <td>
+                                                <div class="tbl-progress"><div class="fill" style="width: 60%;"></div></div>
+                                            </td>
+                                            <td>28 minute ago</td>
+                                            <td>iPhone 15 Pro (178.62.90.1)</td>
+                                            <td><span class="badge-completed">Completed</span></td>
+                                            <td><button class="kick-btn" onclick="revokeStudentSession('Annn Uihan')">طرد الجهاز</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="user-cell">
+                                                    <div class="avatar">MS</div>
+                                                    <span>Manvia Sarah</span>
+                                                </div>
+                                            </td>
+                                            <td>Student, Course</td>
+                                            <td>
+                                                <div class="tbl-progress"><div class="fill" style="width: 40%;"></div></div>
+                                            </td>
+                                            <td>12 months ago</td>
+                                            <td>Windows PC (82.165.12.9)</td>
+                                            <td><span class="badge-active">Active</span></td>
+                                            <td><button class="kick-btn" onclick="revokeStudentSession('Manvia Sarah')">طرد الجهاز</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ADMIN TAB 2: IPAD / MOBILE DIRECT VIDEO UPLOAD -->
+                    <div id="tab-upload" class="admin-tab-pane">
+                        <div class="upload-panel-card">
+                            <div class="panel-header">
+                                <div class="gold-pill-tag"><i data-lucide="smartphone"></i> مخصص للرفع المباشر من iPad والجوال</div>
+                                <h2>مركز رفع مقاطع الفيديو وتشفير VdoCipher DRM</h2>
+                                <p>يمكنك اختيار ملف الفيديو مباشرة من مكتبة الآيباد أو الكاميرا وسيقوم النظام بتجزئته وتشفيره أوتوماتيكياً.</p>
+                            </div>
+
+                            <form id="ipad-upload-form" onsubmit="handleVideoUpload(event)">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>عنوان الدرس / الفيديو:</label>
+                                        <input type="text" id="upload-title" required placeholder="مثال: الدرس 4 - تحليل نسب السيولة والربحية">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>المقرر الدراسي التابع له:</label>
+                                        <select id="upload-course" class="custom-select">
+                                            <option value="1">التحليل المالي والمحاسبة الاستراتيجية</option>
+                                            <option value="2">إدارة الأعمال الدولية والشركات</option>
+                                            <option value="3">التسويق الرقمي وبناء العلامة التجاريه</option>
+                                            <option value="4">إدارة الموارد البشرية والقيادة</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Drag and drop upload zone -->
+                                <div class="drop-zone" id="drop-zone" onclick="triggerFilePicker()">
+                                    <input type="file" id="ipad-file-input" accept="video/*" style="display: none;" onchange="onFileSelected(event)">
+                                    <div class="drop-zone-content">
+                                        <i data-lucide="cloud-upload" class="upload-icon-gold"></i>
+                                        <h3>اضغط هنا لاختيار فيديو من الآيباد / الجوال</h3>
+                                        <p>أو اسحب الملف إلى هنا مباشرة (دعم صيغ MP4, MOV, M4V حتى 5 جيجابايت)</p>
+                                        <span class="file-name-preview" id="selected-file-label">لم يتم اختيار ملف بعد</span>
+                                    </div>
+                                </div>
+
+                                <!-- Progress Bar simulation -->
+                                <div class="upload-progress-box" id="upload-progress-box" style="display: none;">
+                                    <div class="progress-info">
+                                        <span id="upload-status-text">جاري التشفير والرفع إلى Bunny/VdoCipher...</span>
+                                        <span id="upload-perc-text">0%</span>
+                                    </div>
+                                    <div class="progress-bar-container">
+                                        <div class="progress-bar-fill" id="upload-progress-fill" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions mt-4">
+                                    <button type="submit" class="gold-btn-solid">
+                                        <i data-lucide="shield-check"></i>
+                                        <span>تشفير ونشر الفيديو فوراً (DRM)</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- ADMIN TAB 3: STUDENT & DEVICE SESSION MANAGEMENT -->
+                    <div id="tab-students" class="admin-tab-pane">
+                        <div class="admin-panel-card">
+                            <h3>إدارة الجلسات والأجهزة (Single Device Policy)</h3>
+                            <p>يمكنك هنا طرد أي جهاز طالب نشط، أو حظر تسجيل الدخول المزدوج لضمان حماية المحتوى.</p>
+
+                            <div class="session-management-box">
+                                <div class="sec-policy-item">
+                                    <div>
+                                        <h4>الحد الأقصى للأجهزة المسموحة لكل طالب</h4>
+                                        <p>عند محاولة الدخول من جهاز ثانٍ، يتم إرسال تنبيه وتسجيل خروج الجهاز الأول تلقائياً.</p>
+                                    </div>
+                                    <span class="status-pill active-gold">1 جهاز فقط (مفعّل)</span>
+                                </div>
+                                <div class="sec-policy-item">
+                                    <div>
+                                        <h4>الربط مع OTP عبر SMS</h4>
+                                        <p>إرسال رمز التفعيل المؤقت ورقم الجهاز الفريد (Device UUID)</p>
+                                    </div>
+                                    <span class="status-pill active-gold">مزود الخدمة: Twilio/Vonage Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ADMIN TAB 4: SECURITY & WATERMARK SETTINGS -->
+                    <div id="tab-security" class="admin-tab-pane">
+                        <div class="admin-panel-card">
+                            <h3>إعدادات العلامة المائية الديناميكية المتحركة</h3>
+                            <p>التحكم في سرعة تحرك العلامة المائية، حجم الخط، ودرجة الشفافية على فيديوهات الطالب.</p>
+
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label>بيانات العلامة المائية المعروضة:</label>
+                                    <div class="checkbox-group">
+                                        <label><input type="checkbox" checked disabled> اسم الطالب الكامل</label>
+                                        <label><input type="checkbox" checked disabled> رقم الجوال المسجل</label>
+                                        <label><input type="checkbox" checked disabled> البريد الإلكتروني</label>
+                                        <label><input type="checkbox" checked disabled> عنوان IP الحالي</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>سرعة تحرك العلامة المائية على الشاشة:</label>
+                                    <input type="range" min="1" max="10" value="4" id="wm-speed-range" onchange="updateWatermarkSettings()">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>درجة الشفافية (Opacity):</label>
+                                    <input type="range" min="10" max="90" value="45" id="wm-opacity-range" onchange="updateWatermarkSettings()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- MODAL 1: PHONE OTP AUTHENTICATION MODAL -->
+    <div id="otp-modal" class="modal-backdrop">
+        <div class="modal-glass-card">
+            <button class="close-modal-btn" onclick="closeOTPModal()"><i data-lucide="x"></i></button>
+            
+            <div class="modal-header">
+                <div class="gold-icon-circle"><i data-lucide="smartphone"></i></div>
+                <h3>تسجيل الدخول الآمن برقم الجوال</h3>
+                <p>أدخل رقم الجوال لاستلام رمز التحقق المؤقت (OTP)</p>
+            </div>
+
+            <!-- Step 1: Phone Form -->
+            <div id="otp-step-1">
+                <div class="form-group">
+                    <label>رقم الجوال (السعودية / الخليج):</label>
+                    <div class="phone-input-wrapper">
+                        <span class="country-code">+966</span>
+                        <input type="tel" id="user-phone-input" placeholder="50 123 4567" maxlength="9">
+                    </div>
+                </div>
+
+                <div class="device-notice">
+                    <i data-lucide="shield-alert"></i>
+                    <span>سيتم اعتماد هذا الجهاز (Single Device Login). دخولك من جهاز آخر يلغي هذه الجلسة.</span>
+                </div>
+
+                <button class="gold-btn-solid full-width mt-4" onclick="sendOTPCode()">
+                    <span>إرسال رمز التحقق SMS</span>
+                </button>
+            </div>
+
+            <!-- Step 2: Verification Code -->
+            <div id="otp-step-2" style="display: none;">
+                <div class="form-group">
+                    <label>أدخل رمز التحقق المكون من 4 أرقام المرسل لجوالك:</label>
+                    <div class="otp-boxes">
+                        <input type="text" maxlength="1" class="otp-digit" onkeyup="moveOTPFocus(this, 1)">
+                        <input type="text" maxlength="1" class="otp-digit" onkeyup="moveOTPFocus(this, 2)">
+                        <input type="text" maxlength="1" class="otp-digit" onkeyup="moveOTPFocus(this, 3)">
+                        <input type="text" maxlength="1" class="otp-digit" onkeyup="moveOTPFocus(this, 4)">
+                    </div>
+                </div>
+
+                <button class="gold-btn-solid full-width mt-4" onclick="verifyOTPAndLogin()">
+                    <span>تأكيد الدخول وتفعيل الجلسة</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: MOYASAR PAYMENT GATEWAY MODAL -->
+    <div id="moyasar-modal" class="modal-backdrop">
+        <div class="modal-glass-card payment-modal">
+            <button class="close-modal-btn" onclick="closeMoyasarModal()"><i data-lucide="x"></i></button>
+
+            <div class="modal-header">
+                <div class="moyasar-badge-header">
+                    <span class="moyasar-logo-text">Moyasar</span>
+                    <span class="gold-pill">بوابة دفع آمنة 100%</span>
+                </div>
+                <h3 id="pay-course-name">الاشتراك في كورس التحليل المالي</h3>
+                <div class="price-tag-gold" id="pay-course-price">350 ر.س</div>
+            </div>
+
+            <!-- Payment Method Tabs -->
+            <div class="pay-method-tabs">
+                <button class="pay-tab active" onclick="switchPayTab('mada')">
+                    <i data-lucide="credit-card"></i> مدى (Mada)
+                </button>
+                <button class="pay-tab" onclick="switchPayTab('applepay')">
+                    <i data-lucide="smartphone"></i> Apple Pay
+                </button>
+                <button class="pay-tab" onclick="switchPayTab('bank')">
+                    <i data-lucide="landmark"></i> تحويل بنكي
+                </button>
+            </div>
+
+            <!-- Tab 1: Mada / Credit Card -->
+            <div id="pay-tab-mada" class="pay-pane active">
+                <div class="form-group">
+                    <label>اسم حامل البطاقة:</label>
+                    <input type="text" placeholder="AHMED MOHAMMED" id="card-holder">
+                </div>
+                <div class="form-group">
+                    <label>رقم بطاقة مدى / الفيزا:</label>
+                    <input type="text" placeholder="5888 •••• •••• 1234" id="card-number" maxlength="19">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>تاريخ الانتهاء:</label>
+                        <input type="text" placeholder="MM/YY" maxlength="5">
+                    </div>
+                    <div class="form-group">
+                        <label>رمز الأمان (CVC):</label>
+                        <input type="password" placeholder="•••" maxlength="3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Apple Pay -->
+            <div id="pay-tab-applepay" class="pay-pane">
+                <div class="apple-pay-box">
+                    <button class="apple-pay-btn" onclick="processMoyasarPayment()">
+                        <i data-lucide="apple"></i> Pay with Apple Pay
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab 3: Bank Transfer -->
+            <div id="pay-tab-bank" class="pay-pane">
+                <div class="bank-details-box">
+                    <p><strong>اسم الحساب:</strong> شركة أكاديمية بيان محمد التعليمية</p>
+                    <p><strong>البنك:</strong> الراجحي (Al Rajhi Bank)</p>
+                    <p><strong>آيبان (IBAN):</strong> SA44 8000 0000 6080 1012 3456</p>
+                    <small>بعد التحويل سيتم تفعيل الكورس آلياً فور رفع إيصال الدفع.</small>
+                </div>
+            </div>
+
+            <button class="gold-btn-solid full-width mt-4" id="submit-pay-btn" onclick="processMoyasarPayment()">
+                <span>إتمام الدفع والتفعيل التلقائي الفوري</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL 3: SINGLE DEVICE KICK / NOTICE MODAL -->
+    <div id="device-modal" class="modal-backdrop">
+        <div class="modal-glass-card">
+            <button class="close-modal-btn" onclick="closeDeviceModal()"><i data-lucide="x"></i></button>
+            <div class="modal-header">
+                <div class="gold-icon-circle"><i data-lucide="shield-check"></i></div>
+                <h3>حالة حماية الجهاز الموحد (Single Device)</h3>
+                <p>تضمن المنصة تشغيل الحساب من جهاز واحد فقط لحماية حقوق الملكية الفكرية.</p>
+            </div>
+            <div class="active-device-box">
+                <div class="device-item">
+                    <i data-lucide="tablet" class="gold-icon"></i>
+                    <div>
+                        <h4>الجهاز النشط الحالي: iPad Pro 12.9</h4>
+                        <p>تاريخ آخر دخول: اليوم 01:15 AM | الموقع: الرياض، السعودية</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-sm mt-3 text-muted">
+                إذا قمت بتسجيل الدخول من جهاز آخر (مثلاً هاتف أو كمبيوتر جديد)، فسيتم إنهاء الجلسة الحالية وتسجيل خروج الجهاز القديم تلقائياً.
+            </p>
+            <button class="gold-btn-solid full-width mt-4" onclick="closeDeviceModal()">فهمت ذلك</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
