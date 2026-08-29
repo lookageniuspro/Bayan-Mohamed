@@ -1736,6 +1736,16 @@ h1, h2, h3, h4 {
     height: 18px;
     flex-shrink: 0;
 }
+.footer-contact-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.footer-contact-link:hover {
+    color: var(--gold-light);
+    text-shadow: 0 0 10px var(--gold-glow);
+}
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     padding: 1.5rem 0;
