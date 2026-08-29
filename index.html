@@ -23,7 +23,8 @@
     <meta property="og:title" content="أكاديمية بيان محمد | Bayan Mohamed Academy - منصة تعليمية فاخرة">
     <meta property="og:description" content="تفوق في التخصصات الإدارية، التحليل المالي، التسويق، والتخطيط الاستراتيجي مع شروحات محمية بأحدث تقنيات المشاهدة الذكية والتشفير الآمن.">
     <meta property="og:url" content="https://bayan-mohamed.vercel.app/">
-    <meta property="og:image" content="https://bayan-mohamed.vercel.app/share-cover.svg">
+    <meta property="og:image" content="https://bayan-mohamed.vercel.app/share-cover.jpg">
+    <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="أكاديمية بيان محمد - منصة تعليمية فاخرة للطلاب">
@@ -35,7 +36,7 @@
     <meta name="twitter:site" content="@BayanMohamedAcad">
     <meta name="twitter:title" content="أكاديمية بيان محمد | Bayan Mohamed Academy">
     <meta name="twitter:description" content="منصة تعليمية فاخرة للتخصصات الإدارية وإدارة الأعمال - محمية بأحدث تقنيات DRM.">
-    <meta name="twitter:image" content="https://bayan-mohamed.vercel.app/share-cover.svg">
+    <meta name="twitter:image" content="https://bayan-mohamed.vercel.app/share-cover.jpg">
     <meta name="twitter:image:alt" content="أكاديمية بيان محمد - منصة تعليمية فاخرة للطلاب">
     
     <!-- Google Fonts: Cairo & Outfit -->
@@ -86,20 +87,25 @@
             </nav>
 
             <div class="header-actions">
-                <!-- Language Toggle Icon (globe) -->
-                <button class="lang-toggle-btn" id="lang-toggle-btn" onclick="toggleLang()" title="العربية / English">
-                    <i data-lucide="languages"></i>
-                    <span class="lang-toggle-label" id="lang-toggle-label">ع</span>
-                </button>
-
-                <!-- Language Switcher (Saudi Flag = Arabic / US Flag = English) -->
-                <div class="lang-switcher" title="اختيار اللغة / Language Selection">
-                    <button class="lang-btn" id="lang-ar" onclick="setLanguage('ar')" title="العربية">
-                        <span class="flag-sa"></span>
+                <!-- Language Dropdown (globe icon opens a clean picker) -->
+                <div class="lang-dd" id="lang-dd">
+                    <button class="lang-dd-btn" id="lang-dd-btn" onclick="toggleLangDropdown()" aria-label="Language / اللغة" title="اختيار اللغة / Language">
+                        <i data-lucide="globe"></i>
+                        <span class="lang-dd-current" id="lang-dd-current">العربية</span>
+                        <i data-lucide="chevron-down" class="lang-dd-caret"></i>
                     </button>
-                    <button class="lang-btn" id="lang-en" onclick="setLanguage('en')" title="English">
-                        <span class="flag-us"></span>
-                    </button>
+                    <div class="lang-dd-menu" id="lang-dd-menu">
+                        <button class="lang-dd-item" id="lang-dd-ar" onclick="pickLang('ar')">
+                            <span class="flag-sa"></span>
+                            <span class="lang-dd-name">العربية</span>
+                            <i data-lucide="check" class="lang-dd-check"></i>
+                        </button>
+                        <button class="lang-dd-item" id="lang-dd-en" onclick="pickLang('en')">
+                            <span class="flag-us"></span>
+                            <span class="lang-dd-name">English</span>
+                            <i data-lucide="check" class="lang-dd-check"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Single Device Active Session Indicator -->

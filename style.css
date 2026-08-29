@@ -1868,35 +1868,111 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   NEW: LANGUAGE SWITCHER WITH COUNTRY FLAGS
+   NEW: LANGUAGE SWITCHER (header dropdown) + MOBILE DRAWER FLAGS
    ========================================================================== */
-/* Compact language toggle icon button */
-.lang-toggle-btn {
+/* ---- Header language dropdown ---- */
+.lang-dd {
+    position: relative;
+    z-index: 60;
+}
+.lang-dd-btn {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
-    background: rgba(10, 15, 26, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 0.45rem;
+    background: linear-gradient(135deg, rgba(212,175,55,0.16), rgba(212,175,55,0.06));
+    border: 1px solid var(--gold-border);
     color: var(--gold-light);
-    padding: 0.35rem 0.7rem;
-    border-radius: 50px;
+    padding: 0.45rem 0.85rem;
+    border-radius: 12px;
     cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
     transition: all 0.3s ease;
 }
-.lang-toggle-btn:hover {
+.lang-dd-btn:hover {
     border-color: var(--gold-primary);
-    background: rgba(212, 175, 55, 0.12);
-    box-shadow: 0 0 12px var(--gold-glow);
+    box-shadow: 0 0 14px var(--gold-glow), inset 0 0 12px rgba(212,175,55,0.15);
+    transform: translateY(-1px);
 }
-.lang-toggle-btn i {
+.lang-dd-btn i:first-child {
     width: 18px;
     height: 18px;
+    color: var(--gold-primary);
 }
-.lang-toggle-label {
-    font-size: 0.8rem;
-    font-weight: 800;
-    min-width: 16px;
+.lang-dd-caret {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+    color: var(--gold-light);
+}
+.lang-dd.open .lang-dd-caret {
+    transform: rotate(180deg);
+}
+.lang-dd-current {
+    min-width: 52px;
     text-align: center;
+}
+.lang-dd-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    inset-inline-start: 0;
+    min-width: 190px;
+    background: rgba(12, 18, 32, 0.97);
+    border: 1px solid var(--gold-border);
+    border-radius: 14px;
+    padding: 0.4rem;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.25s ease;
+}
+.lang-dd.open .lang-dd-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.lang-dd-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    width: 100%;
+    padding: 0.65rem 0.7rem;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.lang-dd-item:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: #fff;
+}
+.lang-dd-item.active {
+    color: var(--gold-light);
+    background: rgba(212, 175, 55, 0.14);
+}
+.lang-dd-item .flag-sa,
+.lang-dd-item .flag-us {
+    width: 30px;
+    height: 21px;
+    flex-shrink: 0;
+    border-radius: 3px;
+}
+.lang-dd-check {
+    width: 16px;
+    height: 16px;
+    margin-inline-start: auto;
+    color: var(--gold-primary);
+    opacity: 0;
+}
+.lang-dd-item.active .lang-dd-check {
+    opacity: 1;
 }
 .lang-switcher {
     display: flex;
