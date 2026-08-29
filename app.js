@@ -95,19 +95,11 @@ function applyLanguage(lang) {
         if (t[key]) el.placeholder = t[key];
     });
 
-    // Toggle active lang button (desktop dropdown + mobile drawer flags)
+    // Toggle active lang button (mobile drawer flags)
     document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.id === `lang-${lang}` || btn.id === `m-lang-${lang}`);
+        btn.classList.toggle('active', btn.id === `m-lang-${lang}`);
     });
 
-    // Sync header language dropdown
-    const dd = document.getElementById('lang-dd');
-    const ddCurrent = document.getElementById('lang-dd-current');
-    if (ddCurrent) ddCurrent.textContent = lang === 'ar' ? 'العربية' : 'English';
-    document.querySelectorAll('.lang-dd-item').forEach(item => {
-        item.classList.toggle('active', item.id === `lang-dd-${lang}`);
-    });
-    if (dd) dd.classList.remove('open');
     setTimeout(() => { if (window.lucide) lucide.createIcons(); }, 30);
 
     // Persist
@@ -1220,17 +1212,3 @@ function setLanguage(lang) {
     applyLanguage(lang);
 }
 
-// ---- Header language dropdown ----
-function toggleLangDropdown() {
-    const dd = document.getElementById('lang-dd');
-    if (dd) dd.classList.toggle('open');
-}
-function pickLang(lang) {
-    applyLanguage(lang);
-    const dd = document.getElementById('lang-dd');
-    if (dd) dd.classList.remove('open');
-}
-document.addEventListener('click', (e) => {
-    const dd = document.getElementById('lang-dd');
-    if (dd && !dd.contains(e.target)) dd.classList.remove('open');
-});
