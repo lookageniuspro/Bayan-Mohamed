@@ -29,7 +29,7 @@ const i18n = {
         heroSubtitle: 'تفوق في المواد الإدارية، التحليل المالي، التسويق، والتخطيط الاستراتيجي مع شروحات مبسطة ومحمية بأحدث تقنيات المشاهدة الذكية والتشفير الآمن.',
         heroCta1: 'ابدأ مشاهدة الكورسات',
         heroCta2: 'تصفح المقررات الدراسية',
-        chatGreeting: 'مرحباً بك 👋 أنا مساعد بيان محمد الافتراضي. كيف يمكنني مساعدتك اليوم؟\n\nيمكنك طرح أي سؤال حول المقررات، الاشتراك، طريقة الدفع، أو الحماية.',
+        chatGreeting: 'مرحباً بك 👋 أنا المساعد الافتراضي الذكي للأستاذة <strong>أ. بيان محمد</strong> 🇸🇦 كيف يمكنني مساعدتك اليوم؟\n\nأستطيع مساعدتك في كل ما يخص الأكاديمية: المقررات، الأسعار، الاشتراك، الدفع، حماية المحتوى، أو أي استفسار آخر. اسألني بأي صيغة تريد!',
         chatPlaceholder: 'اكتب رسالتك هنا...',
         chatTitle: 'مساعد أكاديمية بيان محمد',
         chatStatus: 'متصل الآن',
@@ -58,9 +58,9 @@ const i18n = {
         heroSubtitle: 'Excel in business courses, financial analysis, marketing, and strategic planning with simplified, DRM-protected video explanations.',
         heroCta1: 'Start Watching Courses',
         heroCta2: 'Browse Courses',
-        chatGreeting: 'Welcome 👋 I am Bayan Mohamed\'s virtual assistant. How can I help you today?\n\nFeel free to ask about courses, subscriptions, payment methods, or content protection.',
+        chatGreeting: 'Welcome 👋 I am the smart virtual assistant of <strong>Prof. Bayan Mohamed</strong> 🇸🇦. How can I help you today?\n\nI can help with anything about the academy: courses, pricing, subscriptions, payments, content protection, or any other question. Ask me however you like!',
         chatPlaceholder: 'Type your message here...',
-        chatTitle: 'Bayan Mohamed Academy Assistant',
+        chatTitle: 'Prof. Bayan Mohamed\'s Assistant',
         chatStatus: 'Online now',
         footerYearSuffix: 'All rights reserved.',
         footerTech: 'Secure DRM viewing • HLS encryption',
@@ -1082,7 +1082,7 @@ function sendChatMessage() {
 const chatKB = {
     ar: {
         courses: {
-            keywords: ['مقرر', 'كورس', 'كورسات', 'مواد', 'مقررات', 'دورات', 'مادة', 'المواد', 'تعليم', 'دروس', 'classes', 'courses'],
+            keywords: ['مقرر', 'مقررات', 'كورس', 'كورسات', 'دورات', 'دروس', 'مواد', 'مادة', 'تعليم', 'محاضره', 'محاضرة', 'درس', 'classes', 'courses', 'lecture', 'lesson'],
             reply: '📚 <strong>المقررات المتاحة في الأكاديمية:</strong>\n\n• التحليل المالي والمحاسبة الاستراتيجية (350 ر.س)\n• إدارة الأعمال الدولية والتخطيط الاستراتيجي (420 ر.س)\n• التسويق الرقمي وبناء العلامة التجارية (290 ر.س)\n• إدارة الموارد البشرية والقيادة التنفيذية (380 ر.س)\n• سلاسل الإمداد واللوجستيات (310 ر.س)\n• مبادئ الاقتصاد للمدراء (340 ر.س)\n\nيمكنك تصفحها من قسم <strong>المقررات الدراسية</strong> مباشرة.'
         },
         payment: {
@@ -1105,8 +1105,12 @@ const chatKB = {
             keywords: ['بيان', 'من هي', 'عني', 'عن الأكاديمية', 'الأكاديمية', 'منصة', 'الاستاذة', 'محمد', 'مين', 'about', 'who is', 'academy', 'platform'],
             reply: '🎓 <strong>عن أكاديمية بيان محمد:</strong>\n\nمنصة تعليمية فاخرة تقدم شروحات مبسطة ومحمية للتخصصات الإدارية وإدارة الأعمال لطلاب الجامعات. الأستاذة بيان محمد تقدم محتوى غني في التحليل المالي، التسويق، التخطيط الاستراتيجي، والموارد البشرية بأسلوب عملي يربط النظرية بتطبيقات السوق.'
         },
+        identity: {
+            keywords: ['من انت', 'من انتي', 'اسمك', 'اسمك ايه', 'مين انت', 'ازايك', 'انت مين', 'مين انتي', 'شنو انت', 'انت شو', 'ما انت', 'who are you', 'what is your name', 'your name', 'what are you', 'مساعد', 'مساعدة', 'بوت', 'الاسم', 'عرف بنفسك', 'تعرف بنفسك'],
+            reply: '👋 أنا <strong>المساعد الافتراضي الذكي للأستاذة أ. بيان محمد</strong>.\n\nصُنعت لمساعدتك في كل ما يخص الأكاديمية — من المقررات والأسعار إلى الاشتراك والدفع وحماية المحتوى. أنا هنا للإجابة على أي سؤال أو توجيهك للقسم الصحيح في أي وقت. 💛'
+        },
         greeting: {
-            keywords: ['مرحبا', 'اهلا', 'السلام', 'هاي', 'هلا', 'صباح', 'مساء', 'hello', 'hi', 'hey', 'مرحباً', 'أهلاً'],
+            keywords: ['مرحبا', 'اهلا', 'السلام', 'هاي', 'هلا', 'صباح', 'مساء', 'سلام', 'hello', 'hi', 'hey', 'مرحباً', 'أهلاً'],
             reply: 'أهلاً بك 🌟 يسعدني مساعدتك! يمكنك سؤالي عن المقررات، الأسعار، طريقة الاشتراك، الدفع، أو حماية المحتوى. ماذا تريد أن تعرف؟'
         },
         thanks: {
@@ -1140,6 +1144,10 @@ const chatKB = {
             keywords: ['bayan', 'who is', 'about', 'academy', 'platform', 'professor', 'teacher', 'instructor'],
             reply: '🎓 <strong>About Bayan Mohamed Academy:</strong>\n\nA premium education platform offering simplified, protected explanations for university business students. Prof. Bayan Mohamed delivers rich content in financial analysis, marketing, strategic planning, and HR — bridging theory with real market applications.'
         },
+        identity: {
+            keywords: ['who are you', 'your name', 'what is your name', 'who r u', 'what are you', 'who is this', 'assistant', 'bot', 'help me', 'introduce yourself', 'tell me about yourself'],
+            reply: '👋 I am the <strong>smart virtual assistant of Prof. Bayan Mohamed</strong>.\n\nI\'m here to help you with everything about the Academy — from courses and pricing to subscriptions, payments, and content protection. Ask me anything, and I\'ll guide you to the right place anytime. 💛'
+        },
         greeting: {
             keywords: ['hello', 'hi', 'hey', 'good morning', 'good evening', 'greetings'],
             reply: 'Hello there 🌟 Glad to help! Ask me about courses, pricing, how to subscribe, payment, or content protection. What would you like to know?'
@@ -1152,26 +1160,58 @@ const chatKB = {
     }
 };
 
+// Normalize text for smart matching (Arabic diacritics, alef variants, taa marbuta, yaa, punctuation)
+function normalizeText(str) {
+    return String(str || '')
+        .toLowerCase()
+        .replace(/[\u064B-\u0652\u0670]/g, '')        // remove diacritics/tashkeel
+        .replace(/[أإآا]/g, 'ا')                       // normalize alef
+        .replace(/ة/g, 'ه')                            // taa marbuta -> haa
+        .replace(/[يى]/g, 'ي')                         // normalize yaa
+        .replace(/ؤ/g, 'و')                            // waw with hamza
+        .replace(/ئ/g, 'ي')                            // yaa with hamza
+        .replace(/[^\p{L}\p{N}\s]/gu, ' ')             // strip punctuation/emoji, keep letters+numbers
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
 function processChat(userText) {
-    const text = userText.toLowerCase();
+    const norm = normalizeText(userText);
     const kb = chatKB[currentLang];
 
-    // Sort topics to match longest/specific keywords for "how to subscribe" before generic
-    const topics = ['subscribe', 'payment', 'security', 'contact', 'courses', 'about', 'greeting', 'thanks'];
+    // Score-based matching: longer keywords weigh more to avoid generic false positives.
+    // Order matters for ties; run identity first so "مساعد" style self-intros are caught.
+    const topics = ['identity', 'thanks', 'greeting', 'subscribe', 'payment', 'security', 'contact', 'courses', 'about'];
 
-    let matched = false;
-    for (const t of topics) {
-        const topic = kb[t];
-        if (topic.keywords.some(k => text.includes(k.toLowerCase()))) {
-            showBotTyping(() => addBotMessage(topic.reply));
-            matched = true;
-            break;
+    let bestTopic = null;
+    let bestScore = 0;
+
+    if (norm) {
+        for (const t of topics) {
+            const topic = kb[t];
+            if (!topic || !topic.keywords) continue;
+            let score = 0;
+            for (const k of topic.keywords) {
+                const nk = normalizeText(k);
+                if (!nk) continue;
+                if (norm.includes(nk)) score += Math.min(3, nk.length); // longer keyword = stronger signal
+            }
+            if (score > bestScore) {
+                bestScore = score;
+                bestTopic = t;
+            }
         }
     }
 
-    if (!matched) {
-        showBotTyping(() => addBotMessage(kb.default));
+    // Smart fallback: partial/weak match -> greeting; no confident match -> default help menu
+    if (!norm || bestScore < 2) {
+        const fallback = bestScore >= 1 && bestTopic ? kb[bestTopic].reply : kb.default;
+        showBotTyping(() => addBotMessage(fallback));
+        return;
     }
+
+    const reply = kb[bestTopic].reply;
+    showBotTyping(() => addBotMessage(reply));
 }
 
 // Language switcher current-lang helper (called from HTML)
