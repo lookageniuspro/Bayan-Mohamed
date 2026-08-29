@@ -131,7 +131,99 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Setup Video Controls Listener
     setupVideoPlayerControls();
+
+    // Animated Business Quotes Rotator
+    initQuoteRotator();
+
+    // Animated Stat Counters
+    initAnimatedCounters();
+
+    // Footer Dynamic Year
+    const yearEl = document.getElementById('footer-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
+
+/* ==========================================================================
+   NEW: ANIMATED BUSINESS QUOTES ROTATOR
+   ========================================================================== */
+const businessQuotes = [
+    'النجاح يبدأ بقرار.',
+    'التحليل المالي هو بوصلة النجاح.',
+    'القائد العظيم يصنع الفرص.',
+    'المعرفة استثمار يدرّ أعلى عائد.',
+    'خطوتك الأولى نحو المستقبل تبدأ هنا.',
+    'التميز ليس صدفة، بل قرار يومي.',
+    'أتقن المال، وامتلك القرار.',
+    'المستقبل لمن يتعلم اليوم.',
+    'التخطيط الجيد نصف النجاح.',
+    'عقول تصنع قادة أعمال.'
+];
+
+function initQuoteRotator() {
+    const display = document.getElementById('quote-display');
+    const progress = document.getElementById('quote-progress');
+    if (!display) return;
+
+    let idx = 0;
+    const quoteDuration = 4000;
+
+    function showQuote(i) {
+        display.style.animation = 'none';
+        void display.offsetWidth;
+        display.style.animation = 'quoteFade 0.6s ease';
+        display.textContent = businessQuotes[i % businessQuotes.length];
+
+        if (progress) {
+            progress.style.transition = 'none';
+            progress.style.width = '0%';
+            void progress.offsetWidth;
+            progress.style.transition = `width ${quoteDuration}ms linear`;
+            progress.style.width = '100%';
+        }
+    }
+
+    showQuote(idx);
+    setInterval(() => {
+        idx = (idx + 1) % businessQuotes.length;
+        showQuote(idx);
+    }, quoteDuration);
+}
+
+/* ==========================================================================
+   NEW: ANIMATED STATS COUNTERS (SCROLL TRIGGERED)
+   ========================================================================== */
+function initAnimatedCounters() {
+    const counters = document.querySelectorAll('.stat-value[data-count]');
+    if (!counters.length) return;
+
+    const animateCount = (el) => {
+        const target = parseFloat(el.getAttribute('data-count'));
+        const isDecimal = target % 1 !== 0;
+        const duration = 1600;
+        const start = performance.now();
+
+        function step(now) {
+            const pct = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - pct, 3);
+            const value = target * eased;
+            el.textContent = isDecimal ? value.toFixed(1) : Math.round(value).toLocaleString('en-US');
+            if (pct < 1) requestAnimationFrame(step);
+            else el.textContent = isDecimal ? target.toFixed(1) : target.toLocaleString('en-US');
+        }
+        requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCount(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+
+    counters.forEach(c => observer.observe(c));
+}
 
 // VIEW SWITCHER ENGINE
 function switchView(viewId) {
@@ -206,9 +298,12 @@ function renderCourseCatalog(courses) {
 }
 
 // FILTER COURSES BY CATEGORY
-function filterCourses(category) {
-    document.querySelectorAll('.category-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+function filterCourses(category, el) {
+    const tabs = document.querySelectorAll('.category-tabs .tab-btn');
+    tabs.forEach(btn => {
+        const isTarget = el ? btn === el : btn.getAttribute('data-cat') === category;
+        btn.classList.toggle('active', isTarget);
+    });
 
     if (category === 'all') {
         renderCourseCatalog(coursesData);

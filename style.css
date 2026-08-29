@@ -1582,6 +1582,291 @@ h1, h2, h3, h4 {
     line-height: 1.8;
 }
 
+/* ==========================================================================
+   NEW: ANIMATED BUSINESS QUOTES ROTATOR (HERO)
+   ========================================================================== */
+.quote-rotator-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+    padding: 0.9rem 1.4rem;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.03));
+    border: 1px solid var(--gold-border);
+    border-radius: 14px;
+    max-width: 95%;
+    position: relative;
+    overflow: hidden;
+}
+.quote-icon {
+    color: var(--gold-primary);
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+}
+.quote-display {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    min-height: 1.6em;
+    display: flex;
+    align-items: center;
+    animation: quoteFade 0.6s ease;
+}
+@keyframes quoteFade {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.quote-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: var(--gold-gradient);
+    width: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+/* ==========================================================================
+   NEW: PROFESSIONAL SITE FOOTER
+   ========================================================================== */
+.site-footer {
+    margin-top: 4rem;
+    background: linear-gradient(180deg, rgba(15, 21, 35, 0.6), rgba(7, 9, 14, 0.95));
+    backdrop-filter: var(--glass-blur);
+    border-top: 1px solid var(--gold-border);
+    padding: 3.5rem 1.5rem 0 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+.footer-col h4.footer-title {
+    font-size: 1.05rem;
+    color: var(--gold-light);
+    margin-bottom: 1.2rem;
+    position: relative;
+    padding-bottom: 0.6rem;
+}
+.footer-col h4.footer-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 32px;
+    height: 2px;
+    background: var(--gold-gradient);
+    border-radius: 2px;
+}
+.footer-about .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+.footer-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 1.3rem;
+    max-width: 90%;
+}
+.footer-socials {
+    display: flex;
+    gap: 0.7rem;
+}
+.social-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-glass-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+.social-btn:hover {
+    background: var(--gold-gradient);
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px var(--gold-glow);
+    border-color: transparent;
+}
+.footer-links, .footer-contact {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+.footer-links li a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: all 0.3s ease;
+}
+.footer-links li a:hover {
+    color: var(--gold-light);
+    transform: translateX(-4px);
+}
+.footer-links li a i {
+    width: 16px;
+    height: 16px;
+}
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+.footer-contact li i {
+    color: var(--gold-primary);
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 1.5rem 0;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.footer-tech {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--gold-light);
+    font-weight: 600;
+}
+.footer-tech i { width: 16px; height: 16px; }
+
+/* ==========================================================================
+   NEW: FLOATING WHATSAPP BUTTON
+   ========================================================================== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    z-index: 400;
+    width: 58px;
+    height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+    transition: all 0.3s ease;
+    animation: whatsappPulse 2.5s infinite;
+}
+.whatsapp-float:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 12px 35px rgba(37, 211, 102, 0.7);
+}
+@keyframes whatsappPulse {
+    0% { box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4); }
+    50% { box-shadow: 0 8px 40px rgba(37, 211, 102, 0.75); }
+    100% { box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4); }
+}
+.whatsapp-tooltip {
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: #0f1523;
+    border: 1px solid var(--gold-border);
+    color: var(--gold-light);
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+.whatsapp-float:hover .whatsapp-tooltip {
+    opacity: 1;
+    right: calc(100% + 18px);
+}
+
+/* ==========================================================================
+   NEW: MICRO-INTERACTIONS & ENHANCED GLASSMORPHISM
+   ========================================================================== */
+.feature-glass-box, .student-stat-card, .course-card,
+.admin-stat-card, .admin-chart-card, .admin-table-card,
+.lesson-info-card, .playlist-sidebar, .upload-panel-card {
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.35s ease,
+                border-color 0.35s ease,
+                backdrop-filter 0.35s ease;
+    background: linear-gradient(145deg, rgba(23, 33, 54, 0.6), rgba(13, 19, 33, 0.5));
+    backdrop-filter: var(--glass-blur) saturate(140%);
+}
+.feature-glass-box:hover, .student-stat-card:hover,
+.course-card:hover, .lesson-info-card:hover {
+    background: linear-gradient(145deg, rgba(30, 44, 72, 0.7), rgba(13, 19, 33, 0.55));
+    backdrop-filter: var(--glass-blur) saturate(160%);
+    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(212, 175, 55, 0.15);
+    border-color: var(--gold-border);
+}
+.course-card {
+    position: relative;
+}
+.course-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.12), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+.course-card:hover::before {
+    opacity: 1;
+}
+.course-card .course-info {
+    position: relative;
+    z-index: 1;
+}
+.course-card:hover .course-thumb-img {
+    transform: scale(1.06);
+}
+.course-thumb-img {
+    transition: transform 0.5s ease;
+}
+.gold-btn-solid, .gold-btn-outline, .glass-btn-secondary, .nav-btn, .tab-btn {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+.gold-btn-solid:active, .tab-btn:active, .nav-btn:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+/* Floating stat cards enhancement */
+.floating-glass-stat {
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(212, 175, 55, 0.2);
+}
+
 /* RESPONSIVE MEDIA QUERIES (DESKTOP, IPAD, MOBILE) */
 @media (max-width: 1024px) {
     .admin-workspace {
@@ -1619,5 +1904,22 @@ h1, h2, h3, h4 {
     }
     .form-grid {
         grid-template-columns: 1fr;
+    }
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    .quote-rotator-wrapper {
+        max-width: 100%;
+    }
+    .whatsapp-float {
+        bottom: 18px;
+        right: 18px;
+        width: 52px;
+        height: 52px;
     }
 }
