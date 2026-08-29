@@ -112,6 +112,59 @@ const i18n = {
         footerSafe: 'مشاهدة آمنة ومحمية',
         // Admin
         adminWelcomeSub: 'نظام التحكم الشامل لأكاديمية بيان محمد - تحكم كامل بالسعة وإحصائيات الطلاب',
+        admMenuAnalytics: 'لوحة التحليلات',
+        admMenuUpload: 'رفع فيديوهات (iPad)',
+        admMenuStudents: 'إدارة الطلاب والأجهزة',
+        admMenuSecurity: 'إعدادات DRM والعلامة المائية',
+        admIpadBadge: 'نموذج تحكم الآيباد والجوال',
+        admTrendStudents: '+12.5% هذا الشهر',
+        admTrendRevenue: 'ربط مباشر Moyasar Webhook',
+        admTrendActive: '500 طالب متزامن حالياً',
+        admChartSub: 'متابعة المبيعات واشتراكات الطلاب خلال الأشهر الأخيرة',
+        admChartLegendSales: 'المبيعات (ر.س)',
+        admChartLegendEnroll: 'التسجيلات الجديدة',
+        admTableRefresh: 'تحديث اللحظي',
+        admKickBtn: 'طرد الجهاز',
+        admUploadTag: 'مخصص للرفع المباشر من iPad والجوال',
+        admUploadTitle: 'مركز رفع مقاطع الفيديو وتشفير VdoCipher DRM',
+        admUploadDesc: 'يمكنك اختيار ملف الفيديو مباشرة من مكتبة الآيباد أو الكاميرا وسيقوم النظام بتجزئته وتشفيره أوتوماتيكياً.',
+        admUpTitleLabel: 'عنوان الدرس / الفيديو:',
+        admUpTitlePh: 'مثال: الدرس 4 - تحليل نسب السيولة والربحية',
+        admUpCourseLabel: 'المقرر الدراسي التابع له:',
+        admDropTitle: 'اضغط هنا لاختيار فيديو من الآيباد / الجوال',
+        admDropDesc: 'أو اسحب الملف إلى هنا مباشرة (دعم صيغ MP4, MOV, M4V حتى 5 جيجابايت)',
+        admDropNone: 'لم يتم اختيار ملف بعد',
+        admUploadStatus: 'جاري التشفير والرفع إلى Bunny/VdoCipher...',
+        admUploadSubmit: 'تشفير ونشر الفيديو فوراً (DRM)',
+        admStuTitle: 'إدارة الجلسات والأجهزة (Single Device Policy)',
+        admStuDesc: 'يمكنك هنا طرد أي جهاز طالب نشط، أو حظر تسجيل الدخول المزدوج لضمان حماية المحتوى.',
+        admStuPolicyTitle: 'الحد الأقصى للأجهزة المسموحة لكل طالب',
+        admStuPolicyDesc: 'عند محاولة الدخول من جهاز ثانٍ، يتم إرسال تنبيه وتسجيل خروج الجهاز الأول تلقائياً.',
+        admStuPolicyStatus: '1 جهاز فقط (مفعّل)',
+        admStuOtpTitle: 'الربط مع OTP عبر SMS',
+        admStuOtpDesc: 'إرسال رمز التفعيل المؤقت ورقم الجهاز الفريد (Device UUID)',
+        admStuOtpStatus: 'مزود الخدمة: Twilio/Vonage Active',
+        admSecTitle: 'إعدادات العلامة المائية الديناميكية المتحركة',
+        admSecDesc: 'التحكم في سرعة تحرك العلامة المائية، حجم الخط، ودرجة الشفافية على فيديوهات الطالب.',
+        admSecDataLabel: 'بيانات العلامة المائية المعروضة:',
+        admSecCbName: 'اسم الطالب الكامل',
+        admSecCbPhone: 'رقم الجوال المسجل',
+        admSecCbEmail: 'البريد الإلكتروني',
+        admSecCbIp: 'عنوان IP الحالي',
+        admSecSpeedLabel: 'سرعة تحرك العلامة المائية على الشاشة:',
+        admSecOpacityLabel: 'درجة الشفافية (Opacity):',
+        admUpTitleDefault: 'فيديو تعليمي جديد',
+        admUpStatus40: 'جاري توليد مفاتيح التشفير HLS + DRM v2...',
+        admUpStatus80: 'جاري المعالجة وإتاحة البث الفوري...',
+        admUpStatusDone: 'تم تشفير ونشر الفيديو بنجاح!',
+        admUpNewTitle: 'فيديو مرفوع جديد',
+        admUpNewCat: 'مرفوع حديثاً (DRM)',
+        admRevConfirm: (n) => `هل تأكد من رغبتك في طرد جهاز الطالب (${n}) وتسجيل خروجه فوراً؟`,
+        admRevAlert: (n) => `تم إلغاء Token وتأمين حساب ${n} بنجاح.`,
+        admStuNow: 'الان (مباشر)',
+        admStuAgo: (m) => `منذ ${m} دقيقة`,
+        admStuKick: 'طرد الجهاز',
+        admStuCourseFinance: 'التحليل المالي والمحاسبة',
     },
     en: {
         dir: 'ltr',
@@ -211,6 +264,59 @@ const i18n = {
         footerSafe: 'Secure & Protected Viewing',
         // Admin
         adminWelcomeSub: 'Comprehensive control system for Bayan Mohamed Academy - full capacity control and student statistics',
+        admMenuAnalytics: 'Analytics Dashboard',
+        admMenuUpload: 'Upload Videos (iPad)',
+        admMenuStudents: 'Manage Students & Devices',
+        admMenuSecurity: 'DRM & Watermark Settings',
+        admIpadBadge: 'iPad / Mobile Control Model',
+        admTrendStudents: '+12.5% this month',
+        admTrendRevenue: 'Direct Moyasar Webhook',
+        admTrendActive: '500 concurrent students now',
+        admChartSub: 'Track sales and student subscriptions over recent months',
+        admChartLegendSales: 'Sales (SAR)',
+        admChartLegendEnroll: 'New Enrollments',
+        admTableRefresh: 'Live refresh',
+        admKickBtn: 'Kick device',
+        admUploadTag: 'For direct upload from iPad & Mobile',
+        admUploadTitle: 'Video Upload Center & VdoCipher DRM Encryption',
+        admUploadDesc: 'Choose a video directly from your iPad library or camera and the system will segment and encrypt it automatically.',
+        admUpTitleLabel: 'Lesson / Video Title:',
+        admUpTitlePh: 'Example: Lesson 4 - Liquidity & Profitability Ratios Analysis',
+        admUpCourseLabel: 'Course:',
+        admDropTitle: 'Click here to choose a video from iPad / Mobile',
+        admDropDesc: 'Or drag the file here directly (supports MP4, MOV, M4V up to 5GB)',
+        admDropNone: 'No file selected yet',
+        admUploadStatus: 'Encrypting and uploading to Bunny/VdoCipher...',
+        admUploadSubmit: 'Encrypt & Publish Video Now (DRM)',
+        admStuTitle: 'Session & Device Management (Single Device Policy)',
+        admStuDesc: 'Here you can kick any active student device, or block duplicate logins to ensure content protection.',
+        admStuPolicyTitle: 'Maximum allowed devices per student',
+        admStuPolicyDesc: 'On a second-device login attempt, an alert is sent and the first device is logged out automatically.',
+        admStuPolicyStatus: '1 device only (Enabled)',
+        admStuOtpTitle: 'OTP via SMS binding',
+        admStuOtpDesc: 'Send the temporary activation code and the unique device number (Device UUID)',
+        admStuOtpStatus: 'Provider: Twilio/Vonage Active',
+        admSecTitle: 'Dynamic Moving Watermark Settings',
+        admSecDesc: 'Control watermark movement speed, font size, and transparency on student videos.',
+        admSecDataLabel: 'Watermark data to display:',
+        admSecCbName: 'Full student name',
+        admSecCbPhone: 'Registered phone number',
+        admSecCbEmail: 'Email address',
+        admSecCbIp: 'Current IP address',
+        admSecSpeedLabel: 'Watermark movement speed on screen:',
+        admSecOpacityLabel: 'Opacity:',
+        admUpTitleDefault: 'New educational video',
+        admUpStatus40: 'Generating HLS + DRM v2 encryption keys...',
+        admUpStatus80: 'Processing and enabling instant streaming...',
+        admUpStatusDone: 'Video encrypted and published successfully!',
+        admUpNewTitle: 'Newly uploaded video',
+        admUpNewCat: 'Recently uploaded (DRM)',
+        admRevConfirm: (n) => `Are you sure you want to kick out student device (${n}) and log them out immediately?`,
+        admRevAlert: (n) => `Token revoked and account ${n} secured successfully.`,
+        admStuNow: 'Now (Live)',
+        admStuAgo: (m) => `${m} minutes ago`,
+        admStuKick: 'Kick Device',
+        admStuCourseFinance: 'Financial Analysis & Accounting',
     }
 };
 
@@ -397,6 +503,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Animated Business Quotes Rotator
     initQuoteRotator();
 
+    // Hero Opening Typewriter (English)
+    initHeroTypewriter();
+
     // Animated Stat Counters
     initAnimatedCounters();
 
@@ -412,6 +521,57 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Chat Translator
     initChatTranslator();
 });
+
+/* ==========================================================================
+   HERO OPENING TYPEWRITER (English sentences, types & erases)
+   ========================================================================== */
+const heroPhrases = [
+    'A specialized education platform for business & entrepreneurship.',
+    'Master Business with Prof. Bayan Mohamed.',
+    'Learn financial analysis, marketing & strategic planning.',
+    'Build your entrepreneurial career with confidence.',
+    'Courses with premium quality and full content protection.'
+];
+
+function initHeroTypewriter() {
+    const el = document.getElementById('hero-typewriter');
+    if (!el) return;
+
+    let phraseIdx = 0;
+    let charIdx = 0;
+    let deleting = false;
+    const typeSpeed = 55;
+    const deleteSpeed = 28;
+    const holdTime = 1800;
+
+    function tick() {
+        const current = heroPhrases[phraseIdx % heroPhrases.length];
+
+        if (!deleting) {
+            charIdx++;
+            el.textContent = current.substring(0, charIdx);
+            if (charIdx === current.length) {
+                deleting = true;
+                setTimeout(tick, holdTime);
+                return;
+            }
+            setTimeout(tick, typeSpeed);
+        } else {
+            charIdx--;
+            el.textContent = current.substring(0, charIdx);
+            if (charIdx === 0) {
+                deleting = false;
+                phraseIdx++;
+                setTimeout(tick, 250);
+                return;
+            }
+            setTimeout(tick, deleteSpeed);
+        }
+    }
+
+    el.textContent = '';
+    setTimeout(tick, 300);
+}
 
 /* ==========================================================================
    NEW: ANIMATED BUSINESS QUOTES ROTATOR
@@ -812,8 +972,8 @@ function switchAdminTab(el, tabId) {
 }
 
 function revokeStudentSession(studentName) {
-    if (confirm(`هل أنت تأكد من رغبتك في طرد جهاز الطالب (${studentName}) وتسجيل خروجه فوراً؟`)) {
-        alert(`تم إلغاء Token وتأمين حساب ${studentName} بنجاح.`);
+    if (confirm(i18n[currentLang].admRevConfirm(studentName))) {
+        alert(i18n[currentLang].admRevAlert(studentName));
         refreshStudentActivity();
     }
 }
@@ -833,10 +993,10 @@ function refreshStudentActivity() {
             </td>
             <td>Beginner of Student</td>
             <td><div class="tbl-progress"><div class="fill" style="width: 85%;"></div></div></td>
-            <td>الان (مباشر)</td>
+            <td>${i18n[currentLang].admStuNow}</td>
             <td>iPad Pro (185.220.101.42)</td>
             <td><span class="badge-active">Active</span></td>
-            <td><button class="kick-btn" onclick="revokeStudentSession('Prof. Bayan Mohamed')">طرد الجهاز</button></td>
+            <td><button class="kick-btn" onclick="revokeStudentSession('Prof. Bayan Mohamed')">${i18n[currentLang].admStuKick}</button></td>
         </tr>
         <tr>
             <td>
@@ -845,12 +1005,12 @@ function refreshStudentActivity() {
                     <span>أحمد محمد علي</span>
                 </div>
             </td>
-            <td>التحليل المالي والمحاسبة</td>
+            <td>${i18n[currentLang].admStuCourseFinance}</td>
             <td><div class="tbl-progress"><div class="fill" style="width: 45%;"></div></div></td>
-            <td>منذ 2 دقيقة</td>
+            <td>${i18n[currentLang].admStuAgo(2)}</td>
             <td>iPhone 15 Pro (185.220.101.42)</td>
             <td><span class="badge-active">Active</span></td>
-            <td><button class="kick-btn" onclick="revokeStudentSession('أحمد محمد علي')">طرد الجهاز</button></td>
+            <td><button class="kick-btn" onclick="revokeStudentSession('أحمد محمد علي')">${i18n[currentLang].admStuKick}</button></td>
         </tr>
         <tr>
             <td>
@@ -861,10 +1021,10 @@ function refreshStudentActivity() {
             </td>
             <td>Completed Learner</td>
             <td><div class="tbl-progress"><div class="fill" style="width: 100%;"></div></div></td>
-            <td>منذ 18 دقيقة</td>
+            <td>${i18n[currentLang].admStuAgo(18)}</td>
             <td>MacBook Air (94.120.44.11)</td>
             <td><span class="badge-completed">Completed</span></td>
-            <td><button class="kick-btn" onclick="revokeStudentSession('Aarah Honte')">طرد الجهاز</button></td>
+            <td><button class="kick-btn" onclick="revokeStudentSession('Aarah Honte')">${i18n[currentLang].admStuKick}</button></td>
         </tr>
     `;
     if (window.lucide) lucide.createIcons();
@@ -910,14 +1070,17 @@ function onFileSelected(e) {
     const preview = document.getElementById('selected-file-label');
     if (file && preview) {
         selectedVideoFile = file;
-        preview.textContent = `الملف المختار: ${file.name} (${(file.size / (1024 * 1024)).toFixed(1)} MB)`;
+        const mb = (file.size / (1024 * 1024)).toFixed(1);
+        preview.textContent = currentLang === 'en'
+            ? `Selected file: ${file.name} (${mb} MB)`
+            : `الملف المختار: ${file.name} (${mb} MB)`;
     }
 }
 
 function handleVideoUpload(e) {
     e.preventDefault();
     const titleInput = document.getElementById('upload-title');
-    const title = titleInput ? titleInput.value : 'فيديو تعليمي جديد';
+    const title = titleInput ? titleInput.value : i18n[currentLang].admUpTitleDefault;
     const progressBox = document.getElementById('upload-progress-box');
     const fill = document.getElementById('upload-progress-fill');
     const statusText = document.getElementById('upload-status-text');
@@ -934,12 +1097,12 @@ function handleVideoUpload(e) {
         percText.textContent = `${progress}%`;
 
         if (progress === 40) {
-            statusText.textContent = 'جاري توليد مفاتيح التشفير HLS + DRM v2...';
+            statusText.textContent = i18n[currentLang].admUpStatus40;
         } else if (progress === 80) {
-            statusText.textContent = 'جاري المعالجة وإتاحة البث الفوري...';
+            statusText.textContent = i18n[currentLang].admUpStatus80;
         } else if (progress >= 100) {
             clearInterval(interval);
-            statusText.textContent = 'تم تشفير ونشر الفيديو بنجاح!';
+            statusText.textContent = i18n[currentLang].admUpStatusDone;
             
             setTimeout(() => {
                 let videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
@@ -949,9 +1112,9 @@ function handleVideoUpload(e) {
 
                 const newCourse = {
                     id: Date.now(),
-                    title: title || (selectedVideoFile ? selectedVideoFile.name : 'فيديو مرفوع جديد'),
+                    title: title || (selectedVideoFile ? selectedVideoFile.name : i18n[currentLang].admUpNewTitle),
                     category: 'finance',
-                    categoryName: 'مرفوع حديثاً (DRM)',
+                    categoryName: i18n[currentLang].admUpNewCat,
                     instructor: 'أ. بيان محمد',
                     price: '350 ر.س',
                     rawPrice: 350,
