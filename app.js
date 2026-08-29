@@ -42,6 +42,76 @@ const i18n = {
         qrContact: 'التواصل معنا',
         navLabel: 'التنقل',
         langLabel: 'اللغة',
+        // Hero visuals
+        drmTitle: 'تشفير HLS + DRM',
+        drmDesc: 'حماية 100% ضد IDM والتسجيل',
+        studentsTitle: '500+ طالب متزامن',
+        studentsDesc: 'أداء سحابي فائق السرعة',
+        // Features
+        feat1Title: 'علامة مائية ديناميكية',
+        feat1Desc: 'بيانات الطالب (الاسم، الجوال، الإيميل) تظهر متحركة طوال فترة المشاهدة لمنع التسريب.',
+        feat2Title: 'جهاز واحد للمستخدم',
+        feat2Desc: 'نظام Single Device Login تلقائي يضمن عدم مشاركة الحساب وطرد الجلسات المزدوجة.',
+        feat3Title: 'دفع فوري عبر Moyasar',
+        feat3Desc: 'دعم مدى، Apple Pay، والتحويل البنكي مع تفعيل تلقائي فوري للكورس فور إتمام الدفع.',
+        feat4Title: 'لوحة تحكم للـ iPad',
+        feat4Desc: 'إدارة المنصة ورفع الفيديوهات مباشرة من الآيباد أو الجوال بسهولة مطلقة.',
+        // Stats
+        statsTitle: 'إحصائياتي في الأكاديمية',
+        statsSub: 'متابعة التطور ومؤشرات الإنجاز الحالية',
+        statRegTitle: 'المقررات المسجلة',
+        statRegFooter: '4 كورسات مكتملة',
+        statHoursTitle: 'ساعات المشاهدة',
+        statHoursUnit: 'ساعة',
+        statHoursFooter: '+3.5 ساعات هذا الأسبوع',
+        statLearnTitle: 'إجمالي التعلم',
+        statLearnUnit: 'درس',
+        statLearnFooter: 'نسبة تفاعل عالية',
+        statRateTitle: 'معدل الإنجاز العام',
+        statRateUnit: 'نقطة',
+        // Catalog
+        catalogTitle: 'المقررات الدراسية المتاحة',
+        catalogSub: 'اختر المقرر الدراسي للبدء في المشاهدة أو الاشتراك التلقائي',
+        catAll: 'الكل',
+        catManagement: 'إدارة الأعمال',
+        catFinance: 'التحليل المالي',
+        catMarketing: 'التسويق الرقمي',
+        catHr: 'الموارد البشرية',
+        // Video player
+        backToCourses: 'العودة إلى المقررات',
+        playerTitle: 'التحليل المالي والمحاسبة الاستراتيجية - الدرس 3: تحليل القوائم المالية والنسب',
+        secWatermark: 'العلامة المائية الديناميكية:',
+        secWatermarkVal: 'نشطة (تتحرك تلقائياً)',
+        secDownload: 'حماية التحميل IDM:',
+        secDownloadVal: 'مفعّلة (تشفير مقطعي)',
+        secObs: 'حماية تسجيل الشاشة OBS:',
+        obsTestBtn: 'اختبار كشف تسجيل الشاشة',
+        blackoutTitle: 'تم كشف محاولة تسجيل الشاشة! (OBS / Screen Capture)',
+        blackoutDesc: 'يتم حجب الفيديو بشاشة سوداء لحماية حقوق الملكية الفكرية لأكاديمية بيان محمد.',
+        closeTest: 'إغلاق الوضع التجريبي للحجب',
+        playerNotSupported: 'متصفحك لا يدعم مشغل الفيديو',
+        lessonInfoTitle: 'تفاصيل الدرس الثالث: تحليل القوائم المالية والمؤشرات',
+        lessonInfoInstructor: 'تقديم المحاضر: أ. بيان محمد | مادة التحليل المالي',
+        buyCourse: 'شراء المقرر الكامل (350 ر.س)',
+        lessonDesc: 'في هذا الدرس نتعلم كيفية قراءة قائمة الدخل، الميزانية العمومية، وقائمة التدفقات النقدية، وحساب النسبة السريعة ونسبة التداول ومعدل دوران الأصول لدعم القرار الإداري والاستثماري.',
+        playlistTitle: 'فصول المقرر الدراسي',
+        attachTitle: 'ملحقات ومذكرات الدرس (PDF)',
+        // Footer
+        footerAboutDesc: 'منصة تعليمية فاخرة ومحمية للتخصصات الإدارية وإدارة الأعمال، نجمع بين الفخامة الذهبية والتكنولوجيا المستقبلية لإلهام طالب البيزنس الطموح.',
+        footerQuickTitle: 'روابط سريعة',
+        footLinkStudent: 'بوابة الطلاب',
+        footLinkPlayer: 'مشغل الفيديو',
+        footLinkAdmin: 'لوحة المشرف',
+        footLinkCourses: 'المقررات الدراسية',
+        footerCoursesTitle: 'المقررات',
+        footAllCourses: 'جميع المقررات',
+        footerContact: 'تواصل معنا',
+        footLocation: 'الرياض، المملكة العربية السعودية',
+        footSupport: 'دعم فني 24/7',
+        footerPayment: 'وسائل دفع آمنة',
+        footerSafe: 'مشاهدة آمنة ومحمية',
+        // Admin
+        adminWelcomeSub: 'نظام التحكم الشامل لأكاديمية بيان محمد - تحكم كامل بالسعة وإحصائيات الطلاب',
     },
     en: {
         dir: 'ltr',
@@ -71,6 +141,76 @@ const i18n = {
         qrContact: 'Contact Us',
         navLabel: 'Navigation',
         langLabel: 'Language',
+        // Hero visuals
+        drmTitle: 'HLS + DRM Encryption',
+        drmDesc: '100% protection against IDM & recording',
+        studentsTitle: '500+ Concurrent Students',
+        studentsDesc: 'Ultra-fast cloud performance',
+        // Features
+        feat1Title: 'Dynamic Watermark',
+        feat1Desc: 'Student data (name, phone, email) moves across the video throughout playback to prevent leaks.',
+        feat2Title: 'Single Device per User',
+        feat2Desc: 'Automatic Single Device Login prevents account sharing and kicks duplicate sessions.',
+        feat3Title: 'Instant Payment via Moyasar',
+        feat3Desc: 'Supports Mada, Apple Pay & bank transfer with instant automatic course activation.',
+        feat4Title: 'iPad Control Panel',
+        feat4Desc: 'Manage the platform and upload videos directly from your iPad or phone easily.',
+        // Stats
+        statsTitle: 'My Academy Stats',
+        statsSub: 'Track progress and current achievement indicators',
+        statRegTitle: 'Enrolled Courses',
+        statRegFooter: '4 courses completed',
+        statHoursTitle: 'Hours Watched',
+        statHoursUnit: 'hours',
+        statHoursFooter: '+3.5 hours this week',
+        statLearnTitle: 'Total Learning',
+        statLearnUnit: 'lessons',
+        statLearnFooter: 'High engagement rate',
+        statRateTitle: 'Overall Completion',
+        statRateUnit: 'points',
+        // Catalog
+        catalogTitle: 'Available Courses',
+        catalogSub: 'Choose a course to start watching or auto-subscribe',
+        catAll: 'All',
+        catManagement: 'Business Management',
+        catFinance: 'Financial Analysis',
+        catMarketing: 'Digital Marketing',
+        catHr: 'Human Resources',
+        // Video player
+        backToCourses: 'Back to Courses',
+        playerTitle: 'Financial Analysis & Strategic Accounting - Lesson 3: Financial Statements & Ratios Analysis',
+        secWatermark: 'Dynamic watermark:',
+        secWatermarkVal: 'Active (auto-moving)',
+        secDownload: 'IDM download protection:',
+        secDownloadVal: 'Enabled (segmented encryption)',
+        secObs: 'OBS screen recording protection:',
+        obsTestBtn: 'Test screen-recording detection',
+        blackoutTitle: 'Screen recording attempt detected! (OBS / Screen Capture)',
+        blackoutDesc: 'The video has been blocked with a black screen to protect Bayan Mohamed Academy\u2019s intellectual property.',
+        closeTest: 'Close the blocking demo mode',
+        playerNotSupported: 'Your browser does not support the video player',
+        lessonInfoTitle: 'Lesson 3 Details: Financial Statements & Indicators Analysis',
+        lessonInfoInstructor: 'Delivered by: Prof. Bayan Mohamed | Financial Analysis',
+        buyCourse: 'Buy Full Course (SAR 350)',
+        lessonDesc: 'In this lesson we learn how to read the income statement, balance sheet, and cash flow statement, and calculate the quick ratio, current ratio, and asset turnover to support managerial and investment decisions.',
+        playlistTitle: 'Course Chapters',
+        attachTitle: 'Lesson Attachments & Notes (PDF)',
+        // Footer
+        footerAboutDesc: 'A luxury, protected education platform for business management specialties — blending golden elegance with futuristic technology to inspire the ambitious business student.',
+        footerQuickTitle: 'Quick Links',
+        footLinkStudent: 'Student Portal',
+        footLinkPlayer: 'Video Player',
+        footLinkAdmin: 'Admin Panel',
+        footLinkCourses: 'Courses',
+        footerCoursesTitle: 'Courses',
+        footAllCourses: 'All Courses',
+        footerContact: 'Contact Us',
+        footLocation: 'Riyadh, Saudi Arabia',
+        footSupport: '24/7 technical support',
+        footerPayment: 'Secure Payment Methods',
+        footerSafe: 'Secure & Protected Viewing',
+        // Admin
+        adminWelcomeSub: 'Comprehensive control system for Bayan Mohamed Academy - full capacity control and student statistics',
     }
 };
 
@@ -101,6 +241,11 @@ function applyLanguage(lang) {
     });
 
     setTimeout(() => { if (window.lucide) lucide.createIcons(); }, 30);
+
+    // Re-render the dynamically generated course catalog in the current language
+    if (typeof renderCourseCatalog === 'function' && document.getElementById('courses-grid-container')) {
+        renderCourseCatalog(coursesData);
+    }
 
     // Persist
     try { localStorage.setItem('bma_lang', lang); } catch(e) {}
@@ -138,8 +283,10 @@ const coursesData = [
     {
         id: 1,
         title: 'التحليل المالي والمحاسبة الاستراتيجية للشركات',
+        titleEn: 'Financial Analysis & Strategic Accounting for Companies',
         category: 'finance',
         categoryName: 'التحليل المالي',
+        categoryNameEn: 'Financial Analysis',
         instructor: 'أ. بيان محمد',
         price: '350 ر.س',
         rawPrice: 350,
@@ -152,8 +299,10 @@ const coursesData = [
     {
         id: 2,
         title: 'إدارة الأعمال الدولية والتخطيط الاستراتيجي',
+        titleEn: 'International Business Management & Strategic Planning',
         category: 'management',
         categoryName: 'إدارة الأعمال',
+        categoryNameEn: 'Business Management',
         instructor: 'د. خالد السعيد',
         price: '420 ر.س',
         rawPrice: 420,
@@ -166,8 +315,10 @@ const coursesData = [
     {
         id: 3,
         title: 'التسويق الرقمي الحديث وبناء العلامة التجارية',
+        titleEn: 'Modern Digital Marketing & Brand Building',
         category: 'marketing',
         categoryName: 'التسويق الرقمي',
+        categoryNameEn: 'Digital Marketing',
         instructor: 'أ. سارة المنصور',
         price: '290 ر.س',
         rawPrice: 290,
@@ -180,8 +331,10 @@ const coursesData = [
     {
         id: 4,
         title: 'إدارة الموارد البشرية والقيادة التنفيذية',
+        titleEn: 'Human Resources Management & Executive Leadership',
         category: 'hr',
         categoryName: 'الموارد البشرية',
+        categoryNameEn: 'Human Resources',
         instructor: 'أ. بيان محمد',
         price: '380 ر.س',
         rawPrice: 380,
@@ -194,8 +347,10 @@ const coursesData = [
     {
         id: 5,
         title: 'سلاسل الإمداد واللوجستيات الفعالة',
+        titleEn: 'Supply Chain & Effective Logistics',
         category: 'management',
         categoryName: 'إدارة الأعمال',
+        categoryNameEn: 'Business Management',
         instructor: 'د. فهد الشمري',
         price: '310 ر.س',
         rawPrice: 310,
@@ -208,8 +363,10 @@ const coursesData = [
     {
         id: 6,
         title: 'مبادئ الاقتصاد الجزئي والكلي للمدراء',
+        titleEn: 'Principles of Micro & Macro Economics for Managers',
         category: 'finance',
         categoryName: 'التحليل المالي',
+        categoryNameEn: 'Financial Analysis',
         instructor: 'د. عمر العتيبي',
         price: '340 ر.س',
         rawPrice: 340,
@@ -438,16 +595,22 @@ function renderCourseCatalog(courses) {
     const grid = document.getElementById('courses-grid-container');
     if (!grid) return;
 
+    const isEn = currentLang === 'en';
+    const catText = c => isEn ? (c.categoryNameEn || c.categoryName) : c.categoryName;
+    const titleText = c => isEn ? (c.titleEn || c.title) : c.title;
+    const instructorLabel = isEn ? 'Instructor:' : 'المحاضر:';
+    const watchLabel = isEn ? 'Watch Course' : 'مشاهدة الكورس';
+
     grid.innerHTML = courses.map(c => `
         <div class="course-card">
             <div class="course-thumb-box">
-                <img src="${c.thumbnail}" alt="${c.title}" class="course-thumb-img">
+                <img src="${c.thumbnail}" alt="${titleText(c)}" class="course-thumb-img">
                 <span class="drm-badge"><i data-lucide="shield-check"></i> ${c.drm}</span>
             </div>
             <div class="course-info">
-                <span class="course-cat">${c.categoryName}</span>
-                <h3 class="course-title">${c.title}</h3>
-                <p class="instructor-name">المحاضر: ${c.instructor}</p>
+                <span class="course-cat">${catText(c)}</span>
+                <h3 class="course-title">${titleText(c)}</h3>
+                <p class="instructor-name">${instructorLabel} ${c.instructor}</p>
 
                 ${c.progress > 0 ? `
                     <div class="progress-bar-container" style="margin-bottom: 1rem;">
@@ -458,7 +621,7 @@ function renderCourseCatalog(courses) {
                 <div class="course-footer">
                     <span class="price-gold">${c.price}</span>
                     <button class="gold-btn-solid" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="playCourseVideo(${c.id})">
-                        <i data-lucide="play-circle"></i> مشاهدة الكورس
+                        <i data-lucide="play-circle"></i> ${watchLabel}
                     </button>
                 </div>
             </div>
