@@ -100,6 +100,14 @@
                     <span id="user-display-name" data-i18n="loginBtn">تسجيل الدخول / OTP</span>
                 </button>
 
+                <!-- Desktop Language Toggle (no flags) -->
+                <button class="lang-toggle-btn" id="header-lang-toggle"
+                        onclick="setLanguage(currentLang === 'en' ? 'ar' : 'en')"
+                        title="تغيير اللغة / Change language">
+                    <i data-lucide="languages"></i>
+                    <span class="lang-toggle-label" id="header-lang-label">EN</span>
+                </button>
+
                 <!-- Mobile Menu Hamburger -->
                 <button class="hamburger-btn" id="hamburger-btn" onclick="toggleMobileMenu()" aria-label="القائمة">
                     <span class="hamburger-line"></span>
@@ -142,10 +150,10 @@
             <span class="mobile-menu-label" data-i18n="langLabel">اللغة</span>
             <div class="mobile-lang-row">
                 <button class="lang-btn" id="m-lang-ar" onclick="setLanguage('ar')" title="العربية">
-                    <span class="flag-sa"></span><span class="mobile-lang-name">العربية</span>
+                    <span class="mobile-lang-name" data-langname="ar">العربية</span>
                 </button>
                 <button class="lang-btn" id="m-lang-en" onclick="setLanguage('en')" title="English">
-                    <span class="flag-us"></span><span class="mobile-lang-name">English</span>
+                    <span class="mobile-lang-name" data-langname="en">English</span>
                 </button>
             </div>
         </div>

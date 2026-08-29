@@ -346,6 +346,10 @@ function applyLanguage(lang) {
         btn.classList.toggle('active', btn.id === `m-lang-${lang}`);
     });
 
+    // Desktop language toggle label shows the target language
+    const hdrLabel = document.getElementById('header-lang-label');
+    if (hdrLabel) hdrLabel.textContent = lang === 'en' ? 'AR' : 'EN';
+
     setTimeout(() => { if (window.lucide) lucide.createIcons(); }, 30);
 
     // Re-render the dynamically generated course catalog in the current language

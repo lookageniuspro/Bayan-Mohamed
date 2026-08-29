@@ -1931,6 +1931,38 @@ h1, h2, h3, h4 {
     transform: scale(1.08);
 }
 
+/* Desktop language toggle icon (no flags) */
+.lang-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    background: rgba(212, 175, 55, 0.08);
+    color: var(--gold-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+.lang-toggle-btn:hover {
+    background: rgba(212, 175, 55, 0.18);
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 14px var(--gold-glow);
+    transform: translateY(-1px);
+}
+.lang-toggle-btn i {
+    width: 18px;
+    height: 18px;
+}
+.lang-toggle-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+
 /* CSS Flags */
 .flag-sa, .flag-us {
     width: 30px;
